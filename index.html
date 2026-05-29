@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMI AI - 로컬 구동형 AI 비서</title>
+    <style>
+        /* 글로벌 스타일 및 테마 정의 */
+        :root {
+            --bg-main: #090d16;
+            --bg-card: #131926;
+            --bg-code: #1e2538;
+            --color-primary: #3b82f6;
+            --color-primary-hover: #2563eb;
+            --color-accent: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #222d44;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 독립된 고정 상단바 (Navigation Bar) */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: rgba(9, 13, 22, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 850;
+            letter-spacing: 1.5px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--color-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.25s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--text-main);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+        }
+
+        /* 메인 콘텐츠 영역 (상단바 높이만큼 여백 확보) */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px - 150px);
+        }
+
+        /* 개별 상세 페이지 섹션 공통 구조 */
+        .page-section {
+            display: none; /* 기본적으로 숨김 처리 */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .page-section.active {
+            display: block; /* 활성화된 페이지지만 표시 */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 상세 페이지 타이틀 스타일 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* [페이지 1] LUMI 소개 (홈) 스타일 */
+        .hero-banner {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--color-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .hero-banner h2 {
+            font-size: 3.5rem;
+            font-weight: 850;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-code);
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        .core-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 5rem;
+        }
+
+        .feature-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .feature-box:hover {
+            border-color: var(--color-primary);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .feature-box h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* [페이지 2] 설치 파일 다운로드 상세 페이지 스타일 */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .download-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .os-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .os-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .os-version {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .download-card .btn {
+            width: 100%;
+        }
+
+        .spec-table-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .spec-table-container h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .spec-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            width: 30%;
+        }
+
+        .spec-table td {
+            font-weight: 500;
+        }
+
+        /* [페이지 3] Git에서 다운로드 상세 페이지 스타일 */
+        .git-guide-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .git-repo-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .repo-url {
+            font-family: monospace;
+            font-size: 1.05rem;
+            color: var(--color-accent);
+        }
+
+        .guide-step {
+            margin-bottom: 2.5rem;
+        }
+
+        .guide-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .step-badge {
+            background-color: var(--color-accent);
+            color: var(--bg-main);
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .guide-step p {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background-color: var(--bg-code);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            color: #e5e7eb;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        /* 하단 푸터 */
+        footer {
+            height: 150px;
+            background-color: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* 반응형 디자인 처리 */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-banner h2 { font-size: 2.3rem; }
+            .page-header h1 { font-size: 2.2rem; }
+            .git-repo-info { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-navbar">
+        <div class="nav-container">
+            <a class="nav-logo" onclick="navigateTo('home')">LUMI<span>.AI</span></a>
+            <ul class="nav-menu">
+                <li class="nav-item active" id="menu-home" onclick="navigateTo('home')">LUMI 소개</li>
+                <li class="nav-item" id="menu-installer" onclick="navigateTo('installer')">설치 파일 다운로드</li>
+                <li class="nav-item" id="menu-git" onclick="navigateTo('git')">Git에서 다운로드</li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section id="page-home" class="page-section active">
+            <div class="hero-banner">
+                <span class="hero-badge">Local Engine AI Assistant</span>
+                <h2>클라우드를 거치지 않는<br>강력한 나만의 로컬 AI 비서</h2>
+                <p>LUMI는 외부 서버나 크롬 확장 프로그램 환경의 제약에서 벗어나, 당신의 로컬 하드웨어 인프라 상에서 직접 인퍼런스를 수행하고 작동하는 완전한 독립형 AI 어시스턴트입니다.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="navigateTo('installer')">독립 실행형 다운로드</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('git')">GitHub Repository</button>
+                </div>
+            </div>
+
+            <div class="core-features">
+                <div class="feature-box">
+                    <div class="feature-icon">🔒</div>
+                    <h3>완벽한 데이터 오프라인 보안</h3>
+                    <p>로컬 머신 내부에서 모든 연산이 진행되므로, 기업 기밀 코드나 개인 자산 데이터가 외부 네트워크로 유출될 염려가 전혀 없습니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🚀</div>
+                    <h3>하드웨어 가속 기반 초고속 연산</h3>
+                    <p>로컬 GPU(CUDA / Metal) 가속 엔진을 직접 바인딩하여, 클라우드 트래픽 정체 상황과 무관하게 언제나 균일하고 압도적인 응답 속도를 보장합니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>네이티브 OS 통제 및 확장성</h3>
+                    <p>브라우저 샌드박스 환경에 갇힌 확장 프로그램과 달리, 로컬 파일 시스템 제어, 개발 툴 체인 연동 등 운영체제 수준의 깊은 자동화를 지원합니다.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="page-installer" class="page-section">
+            <div class="page-header">
+                <h1>설치 파일 다운로드</h1>
+                <p>컴파일이 완료된 각 OS별 네이티브 독립 실행 파일을 다운로드하여 복잡한 빌드 과정 없이 즉시 LUMI AI를 사용할 수 있습니다.</p>
+            </div>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <div class="os-icon">🪟</div>
+                    <div class="os-name">Windows</div>
+                    <div class="os-version">Windows 10 / 11 (64-bit)</div>
+                    <button class="btn btn-primary" onclick="alert('LUMI_AI_Windows_x64.exe 다운로드를 시작합니다.')">LUMI_AI_Setup.exe 다운로드</button>
+                </div>
+                <div class="download-card">
+                    <div class="os-icon">🍏</div>
+                    <div class="os-name">macOS</div>
+                    <div class="os-version">Apple Silicon (M1/M2/M3)</div>
+                    <button class="btn btn-primary" onclick="alert('LUMI_AI_macOS_ARM64.dmg 다운로드를 시작합니다.')">LUMI_AI_Setup.dmg 다운로드</button>
+                </div>
+                <div class="download-card">
+                    <div class="os-icon">🐧</div>
+                    <div class="os-name">Linux</div>
+                    <div class="os-version">Ubuntu 20.04 LTS 이상</div>
+                    <button class="btn btn-primary" onclick="alert('LUMI_AI_Linux_x64.AppImage 다운로드를 시작합니다.')">LUMI_AI.AppImage 다운로드</button>
+                </div>
+            </div>
+
+            <div class="spec-table-container">
+                <h3>로컬 구동 최소 시스템 요구 사양</h3>
+                <table class="spec-table">
+                    <tr>
+                        <th>정적 메모리 (RAM)</th>
+                        <td>최소 16GB 이상 권장 (LLM 로컬 적재 목적)</td>
+                    </tr>
+                    <tr>
+                        <th>그래픽 카드 (GPU)</th>
+                        <td>NVIDIA RTX 3060 이상 (VRAM 6GB 이상 필수) 또는 Apple M 시리즈 칩셋</td>
+                    </tr>
+                    <tr>
+                        <th>스토리지 가용 공간</th>
+                        <td>최소 10GB 이상의 SSD 여유 공간 (로컬 모델 가중치 보관용)</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+
+        <section id="page-git" class="page-section">
+            <div class="page-header">
+                <h1>Git에서 다운로드 및 빌드</h1>
+                <p>오픈소스 저장소에서 소스코드를 직접 클론하여 커스텀 수정 사항을 반영하거나 직접 개발 환경 상에서 로컬 엔진을 구동할 수 있습니다.</p>
+            </div>
+
+            <div class="git-guide-box">
+                <div class="git-repo-info">
+                    <div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.2rem;">Official GitHub Repository</div>
+                        <div class="repo-url">github.com/lumi-ai-project/lumi-core</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="window.open('https://github.588k.top', '_blank')">GitHub에서 보기</button>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-title"><span class="step-badge">STEP 1</span> 원격 저장소 클론 (Clone)</div>
+                    <p>터미널 또는 커맨드라인 인터페이스를 열고 아래의 명령어를 입력하여 로컬 컴퓨터로 소스코드를 복제합니다.</p>
+                    <div class="code-block">git clone https://github.com/lumi-ai-project/lumi-core.git<br>cd lumi-core</div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-title"><span class="step-badge">STEP 2</span> 로컬 개발 종속성 설치</div>
+                    <p>프로젝트 구동 및 엔진 컴파일에 필요한 핵심 모듈과 의존성 패키지들을 빌드 툴을 이용하여 구성합니다.</p>
+                    <div class="code-block">npm install  # 환경 및 구조에 맞게 yarn 혹은 pip 명령어 등으로 대체 가능</div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-title"><span class="step-badge">STEP 3</span> 로컬 엔진 초기화 및 런타임 실행</div>
+                    <p>로컬 하드웨어 런타임 환경 변수를 할당한 후, 소스코드를 빌드하고 프로그램을 직접 로컬 백그라운드 환경에서 구동합니다.</p>
+                    <div class="code-block">npm run dev:local</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">LUMI AI</div>
+        <p>&copy; 2026 LUMI AI Core Open-Source Project. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function navigateTo(pageId) {
+            // 1. 모든 상세 페이지 섹션 비활성화 숨김 처리
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. 모든 네비게이션 바 메뉴에서 활성화 하이라이트 제거
+            const menuItems = document.querySelectorAll('.nav-item');
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 3. 사용자가 선택한 타겟 상세 페이지 섹션 활성화 노출
+            const targetSection = document.getElementById('page-' + pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // 4. 선택한 타겟 네비게이션 바 메뉴에 활성화 하이라이트 추가
+            const targetMenu = document.getElementById('menu-' + pageId);
+            if (targetMenu) {
+                targetMenu.classList.add('active');
+            }
+
+            // 5. 페이지 전환 시 화면 최상단으로 스크롤 이동
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
