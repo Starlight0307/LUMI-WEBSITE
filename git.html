@@ -12,12 +12,17 @@
 
     <main class="main-content">
         <section class="page-section">
+
+            <!-- ── 페이지 헤더 ── -->
             <div class="page-header">
                 <h1>Git에서 다운로드 및 빌드</h1>
                 <p>오픈소스 저장소에서 소스코드를 직접 클론하여 커스텀 수정 사항을 반영하거나 직접 개발 환경 상에서 로컬 엔진을 구동할 수 있습니다.</p>
             </div>
 
+            <!-- ── 가이드 박스 ── -->
             <div class="git-guide-box">
+
+                <!-- 저장소 URL 표시 바 -->
                 <div class="git-repo-info">
                     <div>
                         <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.2rem;">Official GitHub Repository</div>
@@ -26,24 +31,38 @@
                     <button class="btn btn-secondary" onclick="window.open('https://github.com/Starlight0307/Team-Build-It', '_blank')">GitHub에서 보기</button>
                 </div>
 
+                <!-- STEP 1 -->
                 <div class="guide-step">
-                    <div class="step-title"><span class="step-badge">STEP 1</span> 원격 저장소 클론 (Clone)</div>
+                    <div class="step-title">
+                        <span class="step-badge">STEP 1</span>
+                        원격 저장소 클론 (Clone)
+                    </div>
                     <p>터미널 또는 커맨드라인 인터페이스를 열고 아래의 명령어를 입력하여 로컬 컴퓨터로 소스코드를 복제합니다.</p>
                     <div class="code-block">git clone https://github.com/Starlight0307/Team-Build-It<br>cd lumi-core</div>
                 </div>
 
+                <!-- STEP 2 -->
                 <div class="guide-step">
-                    <div class="step-title"><span class="step-badge">STEP 2</span> 로컬 개발 종속성 설치</div>
+                    <div class="step-title">
+                        <span class="step-badge">STEP 2</span>
+                        로컬 개발 종속성 설치
+                    </div>
                     <p>프로젝트 구동 및 엔진 컴파일에 필요한 핵심 모듈과 의존성 패키지들을 빌드 툴을 이용하여 구성합니다.</p>
                     <div class="code-block">npm install  # 환경 및 구조에 맞게 yarn 혹은 pip 명령어 등으로 대체 가능</div>
                 </div>
 
+                <!-- STEP 3 -->
                 <div class="guide-step">
-                    <div class="step-title"><span class="step-badge">STEP 3</span> 로컬 엔진 초기화 및 런타임 실행</div>
+                    <div class="step-title">
+                        <span class="step-badge">STEP 3</span>
+                        로컬 엔진 초기화 및 런타임 실행
+                    </div>
                     <p>로컬 하드웨어 런타임 환경 변수를 할당한 후, 소스코드를 빌드하고 프로그램을 직접 로컬 백그라운드 환경에서 구동합니다.</p>
                     <div class="code-block">npm run dev:local</div>
                 </div>
+
             </div>
+
         </section>
     </main>
 

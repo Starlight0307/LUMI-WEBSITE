@@ -8,10 +8,13 @@
 </head>
 <body>
 
+    <!-- navbar.js가 이 컨테이너 안에 네비게이션 바 HTML을 동적으로 주입합니다 -->
     <div id="navbar-container"></div>
 
     <main class="main-content">
         <section class="page-section">
+
+            <!-- ── 히어로 배너 ── -->
             <div class="hero-banner">
                 <span class="hero-badge">Local Engine AI Assistant</span>
                 <h2>클라우드를 거치지 않는<br>강력한 나만의 로컬 AI 비서</h2>
@@ -22,6 +25,7 @@
                 </div>
             </div>
 
+            <!-- ── 핵심 기능 카드 3개 ── -->
             <div class="core-features">
                 <div class="feature-box">
                     <div class="feature-icon">🔒</div>
@@ -39,6 +43,7 @@
                     <p>브라우저 샌드박스 환경에 갇힌 확장 프로그램과 달리, 로컬 파일 시스템 제어, 개발 툴 체인 연동 등 운영체제 수준의 깊은 자동화를 지원합니다.</p>
                 </div>
             </div>
+
         </section>
     </main>
 
@@ -47,6 +52,7 @@
         <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
     </footer>
 
+    <!-- navbar.js: DOMContentLoaded 이후 navbar-container에 HTML 주입 -->
     <script src="navbar.js"></script>
 </body>
 </html>
