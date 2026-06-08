@@ -1,0 +1,125 @@
+/* =====================================================================
+ * components.css — 재사용 공통 UI 컴포넌트
+ * ===================================================================== */
+
+/* ── 버튼 베이스 ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    /* ★ clamp: 좁아지면 글자 작아짐 + white-space: nowrap으로 줄바꿈 방지 */
+    font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-code);
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
+}
+
+/* ── 다운로드 카드 (installer.html) ── */
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.download-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.os-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.os-name {
+    /* ★ clamp 적용 */
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+}
+
+.os-version {
+    /* ★ clamp 적용 */
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    white-space: nowrap;
+}
+
+.download-card .btn {
+    width: 100%;
+}
+
+/* ── 시스템 사양 테이블 (installer.html) ── */
+.spec-table-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.spec-table-container h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spec-table th,
+.spec-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    /* ★ clamp 적용 */
+    font-size: clamp(0.78rem, 1.5vw, 0.95rem);
+}
+
+.spec-table th {
+    color: var(--text-muted);
+    font-weight: 600;
+    width: 30%;
+}
+
+.spec-table td {
+    font-weight: 500;
+}

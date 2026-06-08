@@ -4,55 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMI - 로컬 구동형 AI 비서</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
 </head>
 <body>
 
-    <!-- navbar.js가 이 컨테이너 안에 네비게이션 바 HTML을 동적으로 주입합니다 -->
+    <!-- navbar는 fixed이므로 hero-section과 겹쳐도 OK -->
     <div id="navbar-container"></div>
 
-    <main class="main-content">
-        <section class="page-section">
-
-            <!-- ── 히어로 배너 ── -->
-            <div class="hero-banner">
-                <span class="hero-badge">Local Engine AI Assistant</span>
-                <h2>클라우드를 거치지 않는<br>강력한 나만의 로컬 AI 비서</h2>
-                <p>LUMI는 외부 서버나 크롬 확장 프로그램 환경의 제약에서 벗어나, 당신의 로컬 하드웨어 인프라 상에서 직접 인퍼런스를 수행하고 작동하는 완전한 독립형 AI 어시스턴트입니다.</p>
-                <div class="hero-actions">
-                    <a href="installer.html" class="btn btn-primary">독립 실행형 다운로드</a>
-                    <a href="git.html" class="btn btn-secondary">GitHub Repository</a>
-                </div>
+    <!-- ★ 히어로 전체화면 — position:fixed navbar 위에 깔리지 않도록
+         padding-top으로 콘텐츠만 70px 아래로 내림 -->
+    <section class="hero-section">
+        <div class="hero-banner">
+            <span class="hero-badge">Local Engine AI Assistant</span>
+            <h2>클라우드를 거치지 않는<br>강력한 나만의 로컬 AI 비서</h2>
+            <p>LUMI는 외부 서버나 크롬 확장 프로그램 환경의 제약에서 벗어나, 당신의 로컬 하드웨어 인프라 상에서 직접 인퍼런스를 수행하고 작동하는 완전한 독립형 AI 어시스턴트입니다.</p>
+            <div class="hero-actions">
+                <a href="installer.html" class="btn btn-primary">독립 실행형 다운로드</a>
+                <a href="git.html" class="btn btn-ghost">GitHub Repository</a>
             </div>
+        </div>
+        <div class="hero-scroll-hint">SCROLL</div>
+    </section>
 
-            <!-- ── 핵심 기능 카드 3개 ── -->
-            <div class="core-features">
-                <div class="feature-box">
-                    <div class="feature-icon">🔒</div>
-                    <h3>완벽한 데이터 오프라인 보안</h3>
-                    <p>로컬 머신 내부에서 모든 연산이 진행되므로, 기업 기밀 코드나 개인 자산 데이터가 외부 네트워크로 유출될 염려가 전혀 없습니다.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon">🚀</div>
-                    <h3>하드웨어 가속 기반 초고속 연산</h3>
-                    <p>로컬 GPU(CUDA / Metal) 가속 엔진을 직접 바인딩하여, 클라우드 트래픽 정체 상황과 무관하게 언제나 균일하고 압도적인 응답 속도를 보장합니다.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon">🛠️</div>
-                    <h3>네이티브 OS 통제 및 확장성</h3>
-                    <p>브라우저 샌드박스 환경에 갇힌 확장 프로그램과 달리, 로컬 파일 시스템 제어, 개발 툴 체인 연동 등 운영체제 수준의 깊은 자동화를 지원합니다.</p>
-                </div>
+    <!-- 핵심 기능 카드 — 히어로 바로 아래, body 라이트 배경으로 전환 -->
+    <main class="features-section">
+        <div class="core-features">
+            <div class="feature-box">
+                <div class="feature-icon">🔒</div>
+                <h3>완벽한 데이터 오프라인 보안</h3>
+                <p>로컬 머신 내부에서 모든 연산이 진행되므로, 기업 기밀 코드나 개인 자산 데이터가 외부 네트워크로 유출될 염려가 전혀 없습니다.</p>
             </div>
-
-        </section>
+            <div class="feature-box">
+                <div class="feature-icon">🚀</div>
+                <h3>하드웨어 가속 기반 초고속 연산</h3>
+                <p>로컬 GPU(CUDA / Metal) 가속 엔진을 직접 바인딩하여, 클라우드 트래픽 정체 상황과 무관하게 언제나 균일하고 압도적인 응답 속도를 보장합니다.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🛠️</div>
+                <h3>네이티브 OS 통제 및 확장성</h3>
+                <p>브라우저 샌드박스 환경에 갇힌 확장 프로그램과 달리, 로컬 파일 시스템 제어, 개발 툴 체인 연동 등 운영체제 수준의 깊은 자동화를 지원합니다.</p>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <div style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">LUMI</div>
+        <div style="font-weight:800; font-size:1.2rem; letter-spacing:1px;">LUMI</div>
         <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
     </footer>
 
-    <!-- navbar.js: DOMContentLoaded 이후 navbar-container에 HTML 주입 -->
     <script src="navbar.js"></script>
 </body>
 </html>

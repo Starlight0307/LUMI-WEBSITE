@@ -1,0 +1,24 @@
+/* =====================================================================
+ * footer.css — 공통 푸터
+ * =====================================================================
+ *
+ * 높이(150px)는 layout.css의 .main-content min-height 계산에서
+ * calc(100vh - 70px - 150px) 형태로 참조됩니다.
+ * 의존: variables.css
+ * ===================================================================== */
+
+footer {
+    height: 150px;
+    background-color: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}

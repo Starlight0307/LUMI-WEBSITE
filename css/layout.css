@@ -1,0 +1,52 @@
+/* =====================================================================
+ * layout.css — 메인 콘텐츠 레이아웃 + 공통 페이지 구조
+ * =====================================================================
+ *
+ * 고정 네비게이션 바(70px)에 가려지지 않도록 상단 여백을 확보하고,
+ * 모든 페이지에서 공통으로 사용하는 섹션·헤더 레이아웃을 정의합니다.
+ *
+ * 적용 페이지: index.html, installer.html, git.html (auth.html 제외)
+ * 의존: variables.css
+ * ===================================================================== */
+
+.main-content {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px - 150px);
+}
+
+.page-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.page-header h1 {
+    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.page-header p {
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+}

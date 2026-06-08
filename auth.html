@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMI - 로그인 / 회원가입</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
@@ -87,7 +89,6 @@
                     <input class="auth-input" type="password" id="reg-pw"
                            placeholder="영문·숫자·특수문자 8자 이상"
                            oninput="updateStrength(this.value)">
-                    <!-- 비밀번호 강도 바 — JS updateStrength()가 width/색상 동적 조정 -->
                     <div class="password-strength">
                         <div class="password-strength-bar" id="strength-bar"></div>
                     </div>
@@ -97,7 +98,6 @@
                     <input class="auth-input" type="password" id="reg-pw2" placeholder="비밀번호 재입력">
                 </div>
 
-                <!-- 약관 동의 — 클릭 시 panel-terms 패널로 이동 -->
                 <div class="auth-check-row">
                     <input type="checkbox" id="agree-terms">
                     <label for="agree-terms">
@@ -124,7 +124,6 @@
 
         <!-- ================================================================
              패널 B: 약관동의 전문
-             회원가입의 "이용약관" 링크 클릭 시 showPanel('terms')로 진입
              ================================================================ -->
         <div id="panel-terms" style="display:none;">
             <button class="auth-back-btn" onclick="showPanel('auth')">← 돌아가기</button>
@@ -167,7 +166,6 @@
 
         <!-- ================================================================
              패널 C: 아이디 찾기
-             하단 "아이디 찾기" 링크 클릭 시 showPanel('find-id')로 진입
              ================================================================ -->
         <div id="panel-find-id" style="display:none;">
             <button class="auth-back-btn" onclick="showPanel('auth')">← 돌아가기</button>
@@ -189,7 +187,6 @@
             </div>
             <button class="auth-btn" onclick="handleFindId()">아이디 찾기</button>
 
-            <!-- 결과 영역 — handleFindId() 성공 후 표시 -->
             <div id="findid-result" style="display:none; margin-top:1.2rem;">
                 <div class="auth-info-box">
                     <strong>✅ 아이디 찾기 결과</strong>
@@ -202,7 +199,6 @@
 
         <!-- ================================================================
              패널 D: 비밀번호 찾기
-             하단 "비밀번호 찾기" 링크 클릭 시 showPanel('find-pw')로 진입
              ================================================================ -->
         <div id="panel-find-pw" style="display:none;">
             <button class="auth-back-btn" onclick="showPanel('auth')">← 돌아가기</button>
@@ -214,7 +210,6 @@
                 입력하신 이메일 주소로 임시 비밀번호가 발송됩니다. 로그인 후 반드시 비밀번호를 변경해 주세요.
             </div>
 
-            <!-- 입력 폼 — handleFindPw() 성공 후 숨겨지고 findpw-sent 표시 -->
             <div id="findpw-form">
                 <div class="auth-field">
                     <label for="findpw-id">아이디</label>
@@ -227,7 +222,6 @@
                 <button class="auth-btn" onclick="handleFindPw()">임시 비밀번호 발송</button>
             </div>
 
-            <!-- 발송 완료 화면 -->
             <div id="findpw-sent" style="display:none;">
                 <div class="auth-info-box" style="border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.07);">
                     <strong style="color:var(--color-accent);">✅ 발송 완료</strong>
@@ -244,17 +238,8 @@
 <script>
 /* =====================================================================
  * auth.html 인라인 스크립트
- * =====================================================================
- * auth.html 전용 인터랙션을 처리합니다.
- * navbar.js와 달리 별도 파일로 분리하지 않고 인라인으로 포함합니다.
- * (auth.html만 이 스크립트를 사용하기 때문)
  * ===================================================================== */
 
-// ─────────────────────────────────────────────────────────────────────
-// 패널 전환
-// ─────────────────────────────────────────────────────────────────────
-// 호출 방법: showPanel('auth') / showPanel('terms') / showPanel('find-id') / showPanel('find-pw')
-// 모든 패널을 숨긴 뒤, 지정한 이름의 패널만 표시합니다.
 function showPanel(name) {
     ['panel-auth', 'panel-terms', 'panel-find-id', 'panel-find-pw'].forEach(id => {
         document.getElementById(id).style.display = 'none';
@@ -262,11 +247,6 @@ function showPanel(name) {
     document.getElementById('panel-' + name).style.display = 'block';
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 로그인 / 회원가입 탭 전환
-// ─────────────────────────────────────────────────────────────────────
-// 탭 버튼과 패널 양쪽에 active 클래스를 토글합니다.
-// CSS의 .auth-panel.active { display: block } 규칙으로 패널이 표시됩니다.
 function switchTab(tab) {
     document.getElementById('tab-login').classList.toggle('active',    tab === 'login');
     document.getElementById('tab-register').classList.toggle('active', tab === 'register');
@@ -274,28 +254,18 @@ function switchTab(tab) {
     document.getElementById('panel-register').classList.toggle('active', tab === 'register');
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 비밀번호 강도 측정
-// ─────────────────────────────────────────────────────────────────────
-// 4가지 조건 충족 여부로 0~4 점수를 산출하고,
-// #strength-bar의 width(25~100%)와 배경색을 동적으로 업데이트합니다.
 function updateStrength(pw) {
     let score = 0;
-    if (pw.length >= 8)           score++; // 최소 길이 8자
-    if (/[0-9]/.test(pw))         score++; // 숫자 포함
-    if (/[^a-zA-Z0-9]/.test(pw))  score++; // 특수문자 포함
-    if (/[A-Z]/.test(pw))         score++; // 대문자 포함
-
+    if (pw.length >= 8)           score++;
+    if (/[0-9]/.test(pw))         score++;
+    if (/[^a-zA-Z0-9]/.test(pw))  score++;
+    if (/[A-Z]/.test(pw))         score++;
     const bar = document.getElementById('strength-bar');
     const colors = ['', '#ef4444', '#f97316', '#eab308', '#10b981'];
-    // 점수 → 색상: 0=없음 1=빨강(약) 2=주황 3=노랑 4=초록(강)
     bar.style.width = (score * 25) + '%';
     bar.style.backgroundColor = colors[score] || 'transparent';
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 로그인 처리 (데모)
-// ─────────────────────────────────────────────────────────────────────
 function handleLogin() {
     const id = document.getElementById('login-id').value.trim();
     const pw = document.getElementById('login-pw').value;
@@ -303,10 +273,6 @@ function handleLogin() {
     alert('로그인 기능은 준비 중입니다.\n아이디: ' + id);
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 회원가입 처리 (데모)
-// ─────────────────────────────────────────────────────────────────────
-// 유효성 검사 후 성공 시 로그인 탭으로 전환합니다.
 function handleRegister() {
     const name   = document.getElementById('reg-name').value.trim();
     const email  = document.getElementById('reg-email').value.trim();
@@ -314,7 +280,6 @@ function handleRegister() {
     const pw     = document.getElementById('reg-pw').value;
     const pw2    = document.getElementById('reg-pw2').value;
     const agreed = document.getElementById('agree-terms').checked;
-
     if (!name || !email || !id || !pw || !pw2) { alert('모든 항목을 입력해 주세요.'); return; }
     if (pw !== pw2)  { alert('비밀번호가 일치하지 않습니다.'); return; }
     if (!agreed)     { alert('이용약관에 동의해 주세요.'); return; }
@@ -322,26 +287,17 @@ function handleRegister() {
     switchTab('login');
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 약관 동의 처리
-// ─────────────────────────────────────────────────────────────────────
-// "전체 동의" 체크 후 "동의하고 돌아가기" 클릭 시
-// 회원가입 폼의 약관 체크박스를 자동으로 체크하고 회원가입 탭으로 복귀합니다.
 function applyTermsAgree(checked) { /* 체크 상태는 confirmTerms에서 검증 */ }
 
 function confirmTerms() {
     if (!document.getElementById('terms-all-agree').checked) {
         alert('약관 전체 동의 체크박스를 선택해 주세요.'); return;
     }
-    document.getElementById('agree-terms').checked = true; // 회원가입 폼 체크박스 자동 체크
+    document.getElementById('agree-terms').checked = true;
     showPanel('auth');
-    switchTab('register'); // 회원가입 탭으로 복귀
+    switchTab('register');
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 아이디 찾기 처리 (데모)
-// ─────────────────────────────────────────────────────────────────────
-// 이름 첫 글자 + 마스킹 처리된 임의 아이디를 결과 영역에 표시합니다.
 function handleFindId() {
     const name  = document.getElementById('findid-name').value.trim();
     const email = document.getElementById('findid-email').value.trim();
@@ -351,10 +307,6 @@ function handleFindId() {
     document.getElementById('findid-result').style.display = 'block';
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// 비밀번호 찾기 처리 (데모)
-// ─────────────────────────────────────────────────────────────────────
-// 이메일 앞 2글자 + **** 마스킹 후 발송 완료 화면으로 전환합니다.
 function handleFindPw() {
     const id    = document.getElementById('findpw-id').value.trim();
     const email = document.getElementById('findpw-email').value.trim();

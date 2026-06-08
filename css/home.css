@@ -1,0 +1,209 @@
+/* =====================================================================
+ * home.css — 홈(index.html) 전용 스타일
+ * ===================================================================== */
+
+/* ─────────────────────────────────────────────────────────────────────
+ * 히어로 섹션
+ * ───────────────────────────────────────────────────────────────────── */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 0;
+    /* ★ isolation: isolate — 자체 스태킹 컨텍스트 생성,
+       body 배경이 비치지 않도록 완전히 차단 */
+    isolation: isolate;
+    background-color: #0f0c29;
+    animation: heroBg 14s ease infinite;
+}
+
+@keyframes heroBg {
+    0%   { background-color: #0f0c29; }
+    16%  { background-color: #1a1a4e; }
+    33%  { background-color: #0d1b4b; }
+    50%  { background-color: #1e3a8a; }
+    66%  { background-color: #312e81; }
+    83%  { background-color: #302b63; }
+    100% { background-color: #0f0c29; }
+}
+
+/* ★ 빛 번짐 글로우 오버레이 */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 30%, rgba(99,102,241,0.40) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(59,130,246,0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 55% 50%, rgba(139,92,246,0.25) 0%, transparent 45%);
+    z-index: 1;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes heroGlow {
+    from { opacity: 0.6; transform: scale(1);    }
+    to   { opacity: 1.0; transform: scale(1.06); }
+}
+
+/* ★ 콘텐츠 — navbar(70px) 아래부터 보이도록 padding-top */
+.hero-banner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 70px 2rem 0;   /* 상단 70px = navbar 높이 */
+    max-width: 900px;
+    width: 100%;
+}
+
+.hero-badge {
+    display: inline-block;
+    background-color: rgba(255,255,255,0.12);
+    color: #c4b5fd;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.22);
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+}
+
+.hero-banner h2 {
+    font-size: clamp(1.8rem, 5.5vw, 3.8rem);
+    font-weight: 850;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow:
+        0 2px 24px rgba(0,0,0,0.45),
+        0 0  40px rgba(99,102,241,0.30);
+}
+
+.hero-banner p {
+    font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+    color: rgba(255,255,255,0.80);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.30);
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: nowrap;
+}
+
+/* ★ 히어로 전용 고스트 버튼 */
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.30);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ghost:hover {
+    background: rgba(255,255,255,0.20);
+    transform: translateY(-2px);
+}
+
+/* ★ 스크롤 유도 화살표 */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    color: rgba(255,255,255,0.40);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    animation: bounce 2.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-scroll-hint::after {
+    content: '↓';
+    font-size: 1.1rem;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.4; }
+    50%       { transform: translateX(-50%) translateY(7px); opacity: 0.8; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+ * 핵심 기능 카드 섹션 — 히어로 아래 라이트 배경
+ * ───────────────────────────────────────────────────────────────────── */
+
+.features-section {
+    max-width: 100%;
+    background-color: var(--bg-main);
+    padding: 5rem 0;
+}
+
+main.features-section > .core-features {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.core-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+    border-color: var(--color-purple);
+    box-shadow: 0 4px 24px rgba(139,92,246,0.10);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.feature-box h3 {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.feature-box p {
+    color: var(--text-muted);
+    font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+}

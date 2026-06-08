@@ -1,0 +1,89 @@
+/* =====================================================================
+ * git.css — Git 페이지(git.html) 전용 스타일
+ * ===================================================================== */
+
+.git-guide-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem;
+}
+
+.git-repo-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+
+/* ★ Official GitHub Repository 라벨 */
+.git-repo-info > div > div:first-child {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    white-space: nowrap;
+}
+
+.repo-url {
+    font-family: monospace;
+    /* ★ clamp 적용 + 줄바꿈 방지 */
+    font-size: clamp(0.78rem, 1.6vw, 1.05rem);
+    color: var(--color-accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.guide-step {
+    margin-bottom: 2.5rem;
+}
+
+.guide-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-title {
+    /* ★ clamp 적용 */
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+}
+
+.step-badge {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+    color: var(--text-main);
+    font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+    font-weight: 800;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.guide-step p {
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    /* ★ clamp 적용 */
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+}
+
+.code-block {
+    background-color: #0f172a;
+    border: 1px solid #1e3a5f;
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(0.82rem, 1.6vw, 0.97rem);
+    color: #7dd3fc;                     /* 밝은 하늘색 — 다크 배경 위 터미널 느낌 */
+    overflow-x: auto;
+    position: relative;
+    white-space: pre;
+    line-height: 1.8;
+}

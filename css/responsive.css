@@ -1,0 +1,121 @@
+/* =====================================================================
+ * responsive.css — 모바일 반응형 (768px 이하)
+ * =====================================================================
+ *
+ * 반드시 모든 CSS 파일 중 마지막에 로드해야 합니다.
+ * 의존: 모든 CSS 파일
+ * ===================================================================== */
+
+@media (max-width: 768px) {
+
+    /* ── 네비게이션 ── */
+    .nav-right    { display: none; }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-mobile-actions {
+        display: flex;
+        align-items: center;
+        /* navbar.css와 동일하게 1.2rem 유지 */
+        gap: 1.2rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(240, 244, 255, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        z-index: 999;
+    }
+
+    /* 드롭다운 열렸을 때 항목 색상 — 완전 검정 */
+    .nav-menu .nav-item {
+        color: #000000;
+    }
+    .nav-menu .nav-item:hover,
+    .nav-menu .nav-item.active {
+        color: #000000;
+    }
+
+    .nav-menu.active { display: flex; }
+    .nav-item::after { display: none; }
+
+    /* ── 타이포그래피 ── */
+    /* hero-banner h2는 clamp()로 자동 축소되므로 고정값 오버라이드 제거 */
+    .page-header h1 { font-size: clamp(1.6rem, 4.5vw, 2.8rem); }
+
+    /* ── 레이아웃 ── */
+    /* hero-actions, git-repo-info: clamp로 글자/버튼이 축소되므로 가로 유지 */
+    .page-section { padding: 3rem 1.2rem; }
+}
+
+/* ── 인증 페이지 600px 이하 ── */
+@media (max-width: 600px) {
+
+    .auth-wrapper {
+        padding: 0.8rem;
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .auth-card {
+        max-width: 100%;
+        padding: 1.8rem 1.4rem;
+        border-radius: 16px;
+    }
+
+    .auth-logo           { margin-bottom: 1.4rem; }
+    .auth-logo-text      { font-size: 1.75rem; }
+    .auth-tab            { font-size: 0.9rem; padding: 0.55rem; }
+    .auth-panel-title    { font-size: 1.2rem; }
+    .auth-panel-desc     { font-size: 0.85rem; margin-bottom: 1.3rem; }
+    .auth-field          { margin-bottom: 1rem; }
+    .auth-field label    { font-size: 0.83rem; }
+    .auth-input          { padding: 0.68rem 0.95rem; font-size: 0.94rem; }
+    .auth-check-row label{ font-size: 0.83rem; line-height: 1.35; }
+    .auth-btn            { padding: 0.78rem; font-size: 0.96rem; }
+    .auth-social-btn     { padding: 0.68rem; font-size: 0.88rem; }
+    .auth-footer-links   { gap: 0.8rem; margin-top: 1.2rem; padding-top: 1.2rem; }
+    .auth-footer-links a { font-size: 0.8rem; }
+    .auth-divider        { margin: 0.9rem 0; font-size: 0.8rem; }
+    .terms-box           { height: 130px; font-size: 0.81rem; }
+    .auth-info-box       { font-size: 0.83rem; padding: 0.85rem 1rem; }
+    .auth-back-btn       { font-size: 0.83rem; margin-bottom: 1.2rem; }
+}
+
+/* ── 초소형 화면 400px 이하 ── */
+@media (max-width: 400px) {
+
+    .auth-wrapper { padding: 0; }
+
+    .auth-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        min-height: 100vh;
+        padding: 1.8rem 1.1rem;
+        box-shadow: none;
+        max-width: 100%;
+    }
+
+    .auth-logo-text { font-size: 1.6rem; }
+    .auth-input     { padding: 0.62rem 0.85rem; font-size: 0.92rem; }
+}
