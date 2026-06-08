@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <a class="nav-item" id="nav-index"     href="index.html">LUMI 소개</a>
                 <a class="nav-item" id="nav-installer" href="installer.html">설치 파일 다운로드</a>
                 <a class="nav-item" id="nav-git"       href="git.html">Git에서 다운로드</a>
+                <a class="nav-item" id="nav-team"      href="team.html">팀 소개</a>
             </nav>
 
             <div class="nav-right">
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let targetId = "nav-index";
     if (page === "installer.html") targetId = "nav-installer";
     else if (page === "git.html")  targetId = "nav-git";
+    else if (page === "team.html") targetId = "nav-team";
     const activeItem = document.getElementById(targetId);
     if (activeItem) activeItem.classList.add("active");
 
@@ -75,4 +77,4 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll(); /* 새로고침 후 현재 스크롤 위치 즉시 반영 */
     }
-}); 
+});

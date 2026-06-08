@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMI - 팀 소개</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/team.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="main-content">
+        <section class="page-section">
+
+            <!-- ── 페이지 헤더 ── -->
+            <div class="page-header">
+                <h1>팀 소개</h1>
+                <p>LUMI를 만들어가는 사람들입니다. 각자의 역할로 로컬 AI의 가능성을 현실로 만들고 있습니다.</p>
+            </div>
+
+            <!-- ── 팀원 카드 그리드 ── -->
+            <div class="team-grid">
+
+                <!-- 팀장 황휘 -->
+                <div class="team-card leader">
+                    <div class="team-avatar">
+                        <img
+                            src="images/hwanghwi.jpg"
+                            alt="황휘 프로필"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="avatar-initial" style="display:none;">휘</span>
+                    </div>
+                    <div class="team-badge">👑 팀장</div>
+                    <div class="team-name">황휘</div>
+                    <div class="team-student-id">20192157</div>
+                    <div class="team-role">UI 제작 · 프론트엔드</div>
+                    <div class="team-bio">프로젝트 전반을 이끌며 사용자 인터페이스 설계와 프론트엔드 개발을 담당합니다.</div>
+                </div>
+
+                <!-- 팀원 강진구 -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img
+                            src="images/kangjingu.jpg"
+                            alt="강진구 프로필"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="avatar-initial" style="display:none;">구</span>
+                    </div>
+                    <div class="team-badge">팀원</div>
+                    <div class="team-name">강진구</div>
+                    <div class="team-student-id">20201940</div>
+                    <div class="team-role">백엔드 · 프론트엔드</div>
+                    <div class="team-bio">서버 아키텍처 설계와 프론트엔드 연동을 담당하며 안정적인 서비스 기반을 구축합니다.</div>
+                </div>
+
+                <!-- 팀원 조성민 -->
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img
+                            src="images/josungmin.jpg"
+                            alt="조성민 프로필"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="avatar-initial" style="display:none;">민</span>
+                    </div>
+                    <div class="team-badge">팀원</div>
+                    <div class="team-name">조성민</div>
+                    <div class="team-student-id">20240643</div>
+                    <div class="team-role">백엔드 · DB 엔지니어링</div>
+                    <div class="team-bio">데이터베이스 설계와 백엔드 로직 구현을 담당하며 데이터 흐름을 최적화합니다.</div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">LUMI</div>
+        <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
+    </footer>
+
+    <script src="navbar.js"></script>
+</body>
+</html>
