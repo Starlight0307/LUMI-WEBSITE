@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMI - LUMI 소개</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="main-content">
+
+        <!-- ① 히어로 -->
+        <section class="about-hero">
+            <div class="about-hero-inner">
+                <div class="about-label-chip">ABOUT LUMI</div>
+                <h1>당신의 PC에서 직접 구동되는<br>완전 독립형 AI 어시스턴트</h1>
+                <p>LUMI는 클라우드와 외부 서버 없이, 당신의 로컬 하드웨어 위에서 직접 구동되는 오픈소스 AI 어시스턴트입니다. 모든 데이터는 언제나 내 PC 안에 머뭅니다.</p>
+                <div class="hero-pills">
+                    <span>✅ 100% 로컬 실행</span>
+                    <span>🔒 데이터 유출 Zero</span>
+                    <span>📶 오프라인 완전 동작</span>
+                    <span>🆓 완전 무료</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ② Cloud vs LUMI -->
+        <section class="vs-section">
+            <div class="about-inner">
+                <div class="about-section-head" data-animate>
+                    <span class="about-label">THE DIFFERENCE</span>
+                    <h2>클라우드 AI와 무엇이 다른가요?</h2>
+                    <p>기존 AI 도구가 해결하지 못한 문제를 LUMI가 어떻게 다루는지 확인하세요.</p>
+                </div>
+                <div class="vs-cards" data-animate>
+                    <div class="vs-card bad">
+                        <div class="vs-card-top">
+                            <span class="vs-emoji">☁️</span>
+                            <h3>기존 클라우드 AI</h3>
+                        </div>
+                        <ul>
+                            <li><span class="x">✗</span>인터넷 연결 없이 사용 불가</li>
+                            <li><span class="x">✗</span>기업 기밀이 외부 서버로 전송</li>
+                            <li><span class="x">✗</span>트래픽에 따라 응답 속도가 불안정</li>
+                            <li><span class="x">✗</span>OS 파일 시스템 접근 불가</li>
+                            <li><span class="x">✗</span>월정액 구독 비용 발생</li>
+                        </ul>
+                    </div>
+                    <div class="vs-middle">
+                        <div class="vs-badge">VS</div>
+                    </div>
+                    <div class="vs-card good">
+                        <div class="vs-card-top">
+                            <span class="vs-emoji">🏠</span>
+                            <h3>LUMI (로컬 AI)</h3>
+                        </div>
+                        <ul>
+                            <li><span class="ck">✓</span>완전 오프라인 동작</li>
+                            <li><span class="ck">✓</span>모든 데이터가 내 PC에만 저장</li>
+                            <li><span class="ck">✓</span>GPU 직접 가속 — 일정하고 빠른 응답</li>
+                            <li><span class="ck">✓</span>파일·IoT까지 OS 네이티브 제어</li>
+                            <li><span class="ck">✓</span>완전 무료 오픈소스</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ③ 핵심 수치 -->
+        <section class="stats-section">
+            <div class="about-inner">
+                <div class="stats-row">
+                    <div class="stat-block" data-animate data-delay="1">
+                        <div class="stat-num">0</div>
+                        <div class="stat-label">외부 데이터 유출</div>
+                        <div class="stat-desc">클라우드로 전송되는 데이터 Zero</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-block" data-animate data-delay="2">
+                        <div class="stat-num">100<span class="stat-unit">%</span></div>
+                        <div class="stat-label">완전 로컬 처리</div>
+                        <div class="stat-desc">모든 AI 연산이 내 PC에서 완결</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-block" data-animate data-delay="3">
+                        <div class="stat-num">∞</div>
+                        <div class="stat-label">무한한 확장성</div>
+                        <div class="stat-desc">플러그인으로 자유롭게 기능 확장</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ④ 핵심 기능 4개 -->
+        <section class="features-4-section">
+            <div class="about-inner">
+                <div class="about-section-head" data-animate>
+                    <span class="about-label">FEATURES</span>
+                    <h2>LUMI의 4가지 핵심 기능</h2>
+                    <p>단순한 챗봇이 아닙니다. PC 전체를 통제하는 진짜 AI 비서입니다.</p>
+                </div>
+                <div class="feat4-grid">
+                    <div class="feat4-card" data-animate data-delay="1">
+                        <div class="feat4-icon-wrap">🤖</div>
+                        <div class="feat4-tags"><span>로컬 실행</span><span>개인 AI</span></div>
+                        <h3>로컬 AI 코어 생성</h3>
+                        <p>Ollama 기반으로 Llama, Mistral, Gemma 등 다양한 오픈소스 LLM을 당신의 PC에서 직접 구동합니다. 클라우드 API 없이 완전히 독립적인 AI 환경을 구축합니다.</p>
+                    </div>
+                    <div class="feat4-card" data-animate data-delay="2">
+                        <div class="feat4-icon-wrap">🔐</div>
+                        <div class="feat4-tags"><span>실시간 감지</span><span>데이터 보호</span></div>
+                        <h3>AI 기반 PC 보안 관리</h3>
+                        <p>AI가 PC 환경을 실시간으로 분석하여 보안 위협을 사전에 차단합니다. 모든 처리는 로컬에서만 이루어지므로 개인정보 유출 위험이 원천 차단됩니다.</p>
+                    </div>
+                    <div class="feat4-card" data-animate data-delay="3">
+                        <div class="feat4-icon-wrap">📅</div>
+                        <div class="feat4-tags"><span>맥락 유지</span><span>패턴 학습</span></div>
+                        <h3>사용자 맞춤 개인 비서</h3>
+                        <p>사용 패턴을 학습해 일정 관리, 정보 추천, PC 상태 체크를 대화 하나로 처리합니다. 여러 앱을 오가는 컨텍스트 스위칭 비용을 없앱니다.</p>
+                    </div>
+                    <div class="feat4-card" data-animate data-delay="4">
+                        <div class="feat4-icon-wrap">💡</div>
+                        <div class="feat4-tags"><span>IoT 연동</span><span>자동화</span></div>
+                        <h3>IoT 스마트 제어</h3>
+                        <p>전등, TV, 보일러 등 스마트홈 기기를 자연어 명령 하나로 제어합니다. Home Assistant와 연동하여 생활 전반의 자동화를 실현합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑤ 이런 분들께 추천해요 -->
+        <section class="target-section">
+            <div class="about-inner">
+                <div class="about-section-head" data-animate>
+                    <span class="about-label">WHO IT'S FOR</span>
+                    <h2>이런 분들께 추천해요</h2>
+                    <p>AI를 활용하고 싶지만 보안과 프라이버시를 포기하고 싶지 않은 모든 분들을 위해 만들어졌습니다.</p>
+                </div>
+                <div class="target-cards">
+                    <div class="target-card" data-animate data-delay="1">
+                        <div class="target-icon">🧑‍💻</div>
+                        <h3>개발자 · 연구자</h3>
+                        <p>기업 기밀 코드나 민감한 연구 데이터를 외부 AI 서버에 보내기 꺼려지는 분. LUMI는 모든 연산을 로컬에서 처리하므로 데이터가 절대 외부로 나가지 않습니다.</p>
+                    </div>
+                    <div class="target-card" data-animate data-delay="2">
+                        <div class="target-icon">🏢</div>
+                        <h3>보안 중시 기업 · 기관</h3>
+                        <p>클라우드 AI 도입이 어려운 기업 환경이나 데이터 주권이 필요한 연구 기관. 외부 네트워크 없이 사내에서만 동작하는 AI 인프라를 구축할 수 있습니다.</p>
+                    </div>
+                    <div class="target-card" data-animate data-delay="3">
+                        <div class="target-icon">🏠</div>
+                        <h3>스마트홈 · 자동화 사용자</h3>
+                        <p>IoT 기기를 AI로 통합 제어하고 싶은 분. 전등, 보일러, TV 등을 자연어 명령 하나로 제어하고 생활 전반을 지능적으로 자동화할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑥ 어떻게 작동하는가 -->
+        <section class="how-section">
+            <div class="about-inner">
+                <div class="about-section-head" data-animate>
+                    <span class="about-label">HOW IT WORKS</span>
+                    <h2>3단계로 시작하세요</h2>
+                    <p>복잡한 설정 없이 바로 나만의 로컬 AI를 구동할 수 있습니다.</p>
+                </div>
+                <div class="how-row">
+                    <div class="how-step" data-animate data-delay="1">
+                        <div class="how-num">01</div>
+                        <div class="how-icon">⬇️</div>
+                        <h3>LUMI 설치</h3>
+                        <p>OS에 맞는 설치 파일을 다운로드하거나 GitHub에서 소스코드를 직접 클론합니다.</p>
+                        <a href="installer.html" class="how-link">다운로드 →</a>
+                    </div>
+                    <div class="how-arrow" aria-hidden="true">→</div>
+                    <div class="how-step" data-animate data-delay="2">
+                        <div class="how-num">02</div>
+                        <div class="how-icon">🦙</div>
+                        <h3>AI 모델 선택</h3>
+                        <p>Ollama를 통해 원하는 오픈소스 LLM 모델을 선택하고 로컬 하드웨어에 적재합니다.</p>
+                        <a href="git.html" class="how-link">GitHub 보기 →</a>
+                    </div>
+                    <div class="how-arrow" aria-hidden="true">→</div>
+                    <div class="how-step" data-animate data-delay="3">
+                        <div class="how-num">03</div>
+                        <div class="how-icon">🚀</div>
+                        <h3>로컬에서 실행</h3>
+                        <p>이후 모든 AI 연산은 당신의 하드웨어에서 처리됩니다. 인터넷 연결이 필요 없습니다.</p>
+                        <span class="how-link-done">준비 완료 ✓</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑦ 오픈소스 철학 -->
+        <section class="opensource-section">
+            <div class="about-inner">
+                <div class="opensource-inner" data-animate>
+                    <div class="os-badge">🐙 Open Source</div>
+                    <h2>모든 코드는 공개되어 있습니다</h2>
+                    <p>LUMI는 완전한 오픈소스 프로젝트입니다. 소스코드를 직접 확인하고, 환경에 맞게 수정하고, 새로운 기능을 제안할 수 있습니다.</p>
+                    <div class="os-points">
+                        <div class="os-point">
+                            <span class="os-point-icon">🔍</span>
+                            <div>
+                                <strong>투명성</strong>
+                                <span>모든 코드를 직접 열람하고 검증할 수 있습니다</span>
+                            </div>
+                        </div>
+                        <div class="os-point">
+                            <span class="os-point-icon">🔧</span>
+                            <div>
+                                <strong>자유로운 수정</strong>
+                                <span>포크 후 자신의 환경에 맞게 커스텀 개발 가능</span>
+                            </div>
+                        </div>
+                        <div class="os-point">
+                            <span class="os-point-icon">🤝</span>
+                            <div>
+                                <strong>커뮤니티</strong>
+                                <span>이슈 등록, Pull Request, 기능 제안 모두 환영</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://github.com/Starlight0307/Team-Build-It" target="_blank" class="btn btn-primary">GitHub에서 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑧ 기술 스택 -->
+        <section class="tech-section">
+            <div class="about-inner">
+                <div class="about-section-head" data-animate>
+                    <span class="about-label">TECH STACK</span>
+                    <h2>사용 기술</h2>
+                </div>
+                <div class="tech-grid" data-animate>
+                    <div class="tech-item"><div class="tech-icon">🦙</div><span>Ollama</span></div>
+                    <div class="tech-item"><div class="tech-icon">🐍</div><span>Python</span></div>
+                    <div class="tech-item"><div class="tech-icon">💻</div><span>Visual Studio Code</span></div>
+                    <div class="tech-item"><div class="tech-icon">🗄️</div><span>Supabase</span></div>
+                    <div class="tech-item"><div class="tech-icon">🐙</div><span>GitHub</span></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col-group">
+                <h4>기업 정보</h4>
+                <ul>
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="about.html">LUMI 소개</a></li>
+                    <li><a href="team.html">팀 소개</a></li>
+                    <li><a href="installer.html">다운로드</a></li>
+                    <li><a href="git.html">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-group">
+                <h4>고객센터</h4>
+                <ul>
+                    <li><a href="support.html">후기 · Q/A · 문의</a></li>
+                    <li><a href="auth.html">로그인 / 회원가입</a></li>
+                    <li><span>teambuildit@lumi.dev</span></li>
+                    <li><span>www.teambuildit.co.kr</span></li>
+                </ul>
+            </div>
+            <div class="footer-col-group">
+                <h4>SNS 링크</h4>
+                <ul>
+                    <li><a href="https://github.com/Starlight0307/Team-Build-It" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="navbar.js"></script>
+    <script>
+    (function () {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    })();
+    </script>
+</body>
+</html>

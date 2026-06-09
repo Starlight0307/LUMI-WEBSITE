@@ -64,7 +64,7 @@
 
 .nav-menu {
     display: flex;
-    gap: 2.5rem;
+    gap: 3.5rem;
     justify-content: center;
 }
 
@@ -156,4 +156,188 @@
     user-select: none;
     transition: color 0.25s ease, transform 0.2s ease;
     line-height: 1;
+}
+
+/* =====================================================================
+ * 메가 메뉴
+ * ===================================================================== */
+
+.nav-mega-trigger {
+    background: none;
+    border: none;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.dd-arrow {
+    font-size: 0.65rem;
+    transition: transform 0.22s;
+    display: inline-block;
+}
+
+.nav-mega-trigger.mega-open .dd-arrow { transform: rotate(180deg); }
+
+/* ── 메가 패널 — navbar 아래 전체 너비 ── */
+.nav-mega-panel {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    z-index: 999;
+    /* 애니메이션 */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.nav-mega-panel.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 패널 내부 그리드 */
+.mega-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+}
+
+/* 그룹 구분선 */
+.mega-divider {
+    width: 1px;
+    background: var(--border-color);
+    align-self: stretch;
+    margin: 0 2rem;
+    flex-shrink: 0;
+}
+
+/* 각 그룹 */
+.mega-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.mega-group-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    padding: 0 0.6rem;
+}
+
+/* 각 링크 항목 */
+.mega-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.6rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: background 0.15s;
+}
+
+.mega-item:hover { background: var(--bg-main); }
+
+.mega-item.active {
+    background: rgba(59,130,246,0.07);
+    color: var(--color-primary);
+}
+
+.mega-icon {
+    font-size: 1.4rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+
+.mega-item:hover .mega-icon,
+.mega-item.active .mega-icon {
+    background: rgba(59,130,246,0.1);
+}
+
+.mega-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.mega-text strong {
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: block;
+    color: inherit;
+}
+
+.mega-text em {
+    font-size: 0.74rem;
+    font-style: normal;
+    color: var(--text-muted);
+    display: block;
+}
+
+/* ── 투명 navbar에서 메가 트리거 흰색 ── */
+.top-navbar:not(.scrolled) .nav-mega-trigger {
+    color: rgba(255,255,255,0.85);
+}
+.top-navbar:not(.scrolled) .nav-mega-trigger:hover,
+.top-navbar:not(.scrolled) .nav-mega-trigger.active,
+.top-navbar:not(.scrolled) .nav-mega-trigger.mega-open {
+    color: #ffffff;
+}
+
+/* ── 모바일 메가 메뉴 ── */
+@media (max-width: 768px) {
+    .nav-mega-panel {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        display: none;
+        box-shadow: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: none;
+        backdrop-filter: none;
+        background: rgba(240,244,255,0.98);
+    }
+
+    .nav-mega-panel.open { display: block; }
+
+    .mega-inner {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 1.2rem 1rem;
+    }
+
+    .mega-divider { display: none; }
+
+    .mega-group { padding: 0.6rem 0; border-bottom: 1px solid var(--border-color); }
+    .mega-group:last-child { border-bottom: none; }
+
+    .mega-icon { display: none; }
+    .mega-item { padding: 0.55rem 0.4rem; }
+    .mega-text strong { font-size: 0.9rem; }
 }

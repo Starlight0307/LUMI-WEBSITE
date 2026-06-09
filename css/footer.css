@@ -1,24 +1,61 @@
 /* =====================================================================
  * footer.css — 공통 푸터
- * =====================================================================
- *
- * 높이(150px)는 layout.css의 .main-content min-height 계산에서
- * calc(100vh - 70px - 150px) 형태로 참조됩니다.
- * 의존: variables.css
  * ===================================================================== */
 
-footer {
-    height: 150px;
+.site-footer {
     background-color: var(--bg-main);
     border-top: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+    padding: 3rem 2rem 0;
 }
 
-footer p {
-    font-size: 0.9rem;
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+.footer-col-group h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.footer-col-group ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.footer-col-group ul li a,
+.footer-col-group ul li span {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col-group ul li a:hover { color: var(--color-primary); }
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
 }

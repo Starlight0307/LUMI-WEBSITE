@@ -1,0 +1,82 @@
+/* =====================================================================
+ * page-bar.css — navbar 바로 밑 컬러 바 (공통)
+ * ===================================================================== */
+
+.page-bar {
+    position: sticky;
+    top: 70px;
+    z-index: 90;
+    background: rgba(240,244,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 그라디언트 강조선 */
+.page-bar::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-purple));
+}
+
+.page-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 48px;
+}
+
+/* 링크·탭 형태 항목 */
+.page-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0 1.2rem;
+    height: 100%;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.page-bar-item:hover { color: var(--text-main); }
+
+.page-bar-item.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+/* 뒤로가기 브레드크럼 + 구분 */
+.page-bar-sep {
+    font-size: 0.78rem;
+    color: var(--border-color);
+    padding: 0 0.2rem;
+    user-select: none;
+}
+
+.page-bar-back {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0 0.8rem 0 0;
+    transition: color 0.2s;
+}
+.page-bar-back:hover { color: var(--color-primary); }
+
+@media (max-width: 768px) {
+    .page-bar-inner { padding: 0 1rem; overflow-x: auto; }
+    .page-bar-item  { padding: 0 0.9rem; font-size: 0.82rem; }
+}

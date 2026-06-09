@@ -1,0 +1,775 @@
+/* =====================================================================
+ * about.css — LUMI 소개 페이지
+ * ===================================================================== */
+
+/* ── 공통 컨테이너 ── */
+.about-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-section-head {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+}
+
+.about-section-head h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    font-weight: 800;
+    margin-bottom: 0.65rem;
+    color: var(--text-main);
+}
+
+.about-section-head p {
+    font-size: clamp(0.88rem, 1.8vw, 1rem);
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* =====================================================================
+ * ① 히어로
+ * ===================================================================== */
+
+.about-hero {
+    background: linear-gradient(135deg, #0a0f1e 0%, #1a1040 45%, #0d1a3a 100%);
+    padding: 140px 2rem 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 30% 30%, rgba(99,102,241,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 75% 65%, rgba(59,130,246,0.22) 0%, transparent 55%);
+    pointer-events: none;
+}
+
+.about-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.about-label-chip {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #a5b4fc;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+}
+
+.about-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.about-hero p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.68);
+    line-height: 1.8;
+    margin-bottom: 2.2rem;
+}
+
+.hero-pills {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.hero-pills span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 1rem;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    white-space: nowrap;
+}
+
+.about-hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-ghost-light {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.72rem 1.8rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-ghost-light:hover {
+    background: rgba(255,255,255,0.16);
+    border-color: rgba(255,255,255,0.4);
+}
+
+/* =====================================================================
+ * ② Cloud vs LUMI
+ * ===================================================================== */
+
+.vs-section {
+    padding: 5rem 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.vs-cards {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.vs-card {
+    border-radius: 20px;
+    padding: 2rem 2rem 2.2rem;
+    border: 1px solid;
+}
+
+.vs-card.bad {
+    background: rgba(239,68,68,0.04);
+    border-color: rgba(239,68,68,0.18);
+}
+
+.vs-card.good {
+    background: rgba(59,130,246,0.04);
+    border-color: rgba(59,130,246,0.22);
+}
+
+.vs-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.6rem;
+}
+
+.vs-emoji { font-size: 1.6rem; }
+
+.vs-card-top h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.vs-card.bad  .vs-card-top h3 { color: #ef4444; }
+.vs-card.good .vs-card-top h3 { color: var(--color-primary); }
+
+.vs-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.vs-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.x  { color: #ef4444; font-weight: 800; flex-shrink: 0; font-size: 1rem; }
+.ck { color: #22c55e; font-weight: 800; flex-shrink: 0; font-size: 1rem; }
+
+.vs-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4.5rem;
+    flex-shrink: 0;
+}
+
+.vs-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-purple));
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+}
+
+/* =====================================================================
+ * ③ 핵심 기능 4개
+ * ===================================================================== */
+
+.features-4-section {
+    padding: 5rem 0;
+    background: var(--bg-main);
+}
+
+.feat4-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.feat4-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem 2rem 2.2rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.feat4-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 36px rgba(59,130,246,0.1);
+    transform: translateY(-3px);
+}
+
+.feat4-icon-wrap {
+    font-size: 2.2rem;
+    margin-bottom: 0.9rem;
+    line-height: 1;
+}
+
+.feat4-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+}
+
+.feat4-tags span {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.18rem 0.65rem;
+    border-radius: 50px;
+    background: rgba(59,130,246,0.08);
+    color: var(--color-primary);
+    border: 1px solid rgba(59,130,246,0.16);
+}
+
+.feat4-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    color: var(--text-main);
+}
+
+.feat4-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* =====================================================================
+ * ④ How it works
+ * ===================================================================== */
+
+.how-section {
+    padding: 5rem 0;
+    background: var(--bg-main);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.how-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.how-step {
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem 1.6rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.how-step:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 24px rgba(59,130,246,0.1);
+}
+
+.how-num {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    background: rgba(59,130,246,0.08);
+    padding: 0.2rem 0.7rem;
+    border-radius: 50px;
+    border: 1px solid rgba(59,130,246,0.15);
+}
+
+.how-icon {
+    font-size: 2.2rem;
+    margin: 0.4rem 0;
+    line-height: 1;
+}
+
+.how-step h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.how-step p {
+    font-size: 0.845rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.how-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.how-link:hover { opacity: 0.7; }
+
+.how-link-done {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #22c55e;
+}
+
+.how-arrow {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    opacity: 0.35;
+    padding-top: 5rem;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+/* =====================================================================
+ * ⑤ 핵심 수치
+ * ===================================================================== */
+
+.stats-section {
+    padding: 4.5rem 0;
+    background: linear-gradient(135deg, #0a0f1e 0%, #1a1040 50%, #0d1a3a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(99,102,241,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-block {
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    max-width: 280px;
+}
+
+.stat-num {
+    font-size: clamp(2.8rem, 6vw, 4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #a5b4fc, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-unit {
+    font-size: 0.55em;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.stat-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+}
+
+/* =====================================================================
+ * ⑥ 비교표
+ * ===================================================================== */
+
+.compare-section {
+    padding: 5rem 0;
+    background: var(--bg-main);
+}
+
+.compare-table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+    background: var(--bg-card);
+}
+
+.compare-table th,
+.compare-table td {
+    padding: 0.95rem 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.compare-table th {
+    background: var(--bg-code);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.compare-table td:first-child,
+.compare-table th:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.compare-table th.highlight-col {
+    background: rgba(59,130,246,0.12);
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.compare-table td.highlight-col {
+    background: rgba(59,130,246,0.05);
+    color: var(--color-primary);
+    font-weight: 700;
+    border-left: 2px solid rgba(59,130,246,0.25);
+    border-right: 2px solid rgba(59,130,246,0.25);
+}
+
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody tr:hover td { background: var(--bg-main); }
+
+/* =====================================================================
+ * ⑤ 이런 분들께 추천해요
+ * ===================================================================== */
+
+.target-section {
+    padding: 5rem 0;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.target-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.target-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem 1.8rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.target-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 32px rgba(59,130,246,0.09);
+    transform: translateY(-3px);
+}
+
+.target-icon {
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.target-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.target-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* =====================================================================
+ * ⑦ 오픈소스 철학
+ * ===================================================================== */
+
+.opensource-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #0a0f1e 0%, #1a1040 50%, #0d1a3a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.opensource-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(99,102,241,0.16) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.opensource-inner {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.os-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.5px;
+}
+
+.opensource-inner h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+}
+
+.opensource-inner > p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+    max-width: 480px;
+}
+
+.os-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 480px;
+    margin: 0.4rem 0;
+}
+
+.os-point {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.os-point:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.os-point-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+.os-point div { display: flex; flex-direction: column; gap: 0.1rem; }
+
+.os-point strong {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+}
+
+.os-point span {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    display: block;
+}
+
+/* =====================================================================
+ * ⑧ 기술 스택
+ * ===================================================================== */
+
+.tech-section {
+    padding: 5rem 0;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+}
+
+.tech-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.6rem 2rem;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    min-width: 120px;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.tech-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 24px rgba(59,130,246,0.1);
+    transform: translateY(-3px);
+}
+
+.tech-icon { font-size: 2.2rem; line-height: 1; }
+
+.tech-item span {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* =====================================================================
+ * 스크롤 애니메이션
+ * ===================================================================== */
+
+[data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate].is-visible { opacity: 1; transform: translateY(0); }
+[data-animate][data-delay="1"] { transition-delay: 0.08s; }
+[data-animate][data-delay="2"] { transition-delay: 0.18s; }
+[data-animate][data-delay="3"] { transition-delay: 0.28s; }
+[data-animate][data-delay="4"] { transition-delay: 0.38s; }
+
+/* =====================================================================
+ * 반응형
+ * ===================================================================== */
+
+@media (max-width: 900px) {
+    .vs-cards { grid-template-columns: 1fr; }
+    .vs-middle { display: none; }
+    .feat4-grid { grid-template-columns: 1fr; }
+    .target-cards { grid-template-columns: 1fr; }
+    .how-row { flex-direction: column; align-items: center; }
+    .how-arrow { display: none; }
+    .how-step { max-width: 100%; width: 100%; }
+    .stats-row { flex-direction: column; gap: 1.5rem; }
+    .stat-divider { width: 80px; height: 1px; }
+}
+
+@media (max-width: 768px) {
+    .about-hero { padding: 120px 1.5rem 60px; }
+    .about-hero h1 { font-size: 1.9rem; }
+    .hero-pills span { font-size: 0.75rem; padding: 0.32rem 0.8rem; }
+    .feat4-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .about-hero h1 { font-size: 1.65rem; }
+    .about-section-head h2 { font-size: 1.5rem; }
+    .about-hero-btns { flex-direction: column; align-items: center; }
+}

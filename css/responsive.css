@@ -1,15 +1,40 @@
 /* =====================================================================
- * responsive.css — 모바일 반응형 (768px 이하)
- * =====================================================================
- *
- * 반드시 모든 CSS 파일 중 마지막에 로드해야 합니다.
- * 의존: 모든 CSS 파일
+ * responsive.css — 반응형 (반드시 마지막에 로드)
  * ===================================================================== */
 
+/* ── 태블릿 이하 (1024px) ── */
+@media (max-width: 1024px) {
+    .core-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* ── 중간 화면 (900px) ── */
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .footer-inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── 모바일 (768px 이하) ── */
 @media (max-width: 768px) {
 
-    /* ── 네비게이션 ── */
-    .nav-right    { display: none; }
+    /* 네비게이션 */
+    .nav-right { display: none; }
 
     .nav-container {
         display: flex;
@@ -20,7 +45,6 @@
     .nav-mobile-actions {
         display: flex;
         align-items: center;
-        /* navbar.css와 동일하게 1.2rem 유지 */
         gap: 1.2rem;
     }
 
@@ -45,30 +69,104 @@
         z-index: 999;
     }
 
-    /* 드롭다운 열렸을 때 항목 색상 — 완전 검정 */
-    .nav-menu .nav-item {
-        color: #000000;
-    }
+    .nav-menu .nav-item { color: #000; }
     .nav-menu .nav-item:hover,
-    .nav-menu .nav-item.active {
-        color: #000000;
-    }
-
+    .nav-menu .nav-item.active { color: #000; }
     .nav-menu.active { display: flex; }
     .nav-item::after { display: none; }
 
-    /* ── 타이포그래피 ── */
-    /* hero-banner h2는 clamp()로 자동 축소되므로 고정값 오버라이드 제거 */
-    .page-header h1 { font-size: clamp(1.6rem, 4.5vw, 2.8rem); }
+    /* 섹션 공통 */
+    .section-inner { padding: 0 1.2rem; }
+    .features-section,
+    .team-section,
+    .reviews-section,
+    .contact-section { padding: 3.5rem 0; }
 
-    /* ── 레이아웃 ── */
-    /* hero-actions, git-repo-info: clamp로 글자/버튼이 축소되므로 가로 유지 */
-    .page-section { padding: 3rem 1.2rem; }
+    /* 캐러셀 */
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+    .carousel-prev { left: 0.75rem; }
+    .carousel-next { right: 0.75rem; }
+
+    /* 기능 카드 */
+    .core-features {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    /* 팀 카드 */
+    .team-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .team-avatar-wrap {
+        aspect-ratio: 4 / 3;
+    }
+
+    /* 후기 */
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Q/A */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* 푸터 */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-inner:has(.footer-brand) {
+        flex-direction: column;
+    }
+
+    /* 기타 페이지 */
+    .page-header h1 { font-size: clamp(1.5rem, 4.5vw, 2.4rem); }
+    .page-section   { padding: 3rem 1.2rem; }
 }
 
-/* ── 인증 페이지 600px 이하 ── */
-@media (max-width: 600px) {
+/* ── 소형 모바일 (480px 이하) ── */
+@media (max-width: 480px) {
 
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-banner {
+        padding: 70px 1.2rem 0;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-actions .btn,
+    .hero-actions .btn-ghost {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .team-cards {
+        max-width: 100%;
+    }
+
+    /* 인증 페이지 */
     .auth-wrapper {
         padding: 0.8rem;
         padding-top: 1.2rem;
@@ -89,22 +187,18 @@
     .auth-field          { margin-bottom: 1rem; }
     .auth-field label    { font-size: 0.83rem; }
     .auth-input          { padding: 0.68rem 0.95rem; font-size: 0.94rem; }
-    .auth-check-row label{ font-size: 0.83rem; line-height: 1.35; }
     .auth-btn            { padding: 0.78rem; font-size: 0.96rem; }
     .auth-social-btn     { padding: 0.68rem; font-size: 0.88rem; }
     .auth-footer-links   { gap: 0.8rem; margin-top: 1.2rem; padding-top: 1.2rem; }
-    .auth-footer-links a { font-size: 0.8rem; }
     .auth-divider        { margin: 0.9rem 0; font-size: 0.8rem; }
     .terms-box           { height: 130px; font-size: 0.81rem; }
     .auth-info-box       { font-size: 0.83rem; padding: 0.85rem 1rem; }
     .auth-back-btn       { font-size: 0.83rem; margin-bottom: 1.2rem; }
 }
 
-/* ── 초소형 화면 400px 이하 ── */
+/* ── 초소형 (400px 이하) ── */
 @media (max-width: 400px) {
-
     .auth-wrapper { padding: 0; }
-
     .auth-card {
         border-radius: 0;
         border-left: none;
@@ -115,7 +209,6 @@
         box-shadow: none;
         max-width: 100%;
     }
-
     .auth-logo-text { font-size: 1.6rem; }
     .auth-input     { padding: 0.62rem 0.85rem; font-size: 0.92rem; }
 }

@@ -16,78 +16,279 @@
     <div id="navbar-container"></div>
 
     <main class="main-content">
-        <section class="page-section">
 
-            <!-- ── 페이지 헤더 ── -->
-            <div class="page-header">
-                <h1>팀 소개</h1>
-                <p>LUMI를 만들어가는 사람들입니다. 각자의 역할로 로컬 AI의 가능성을 현실로 만들고 있습니다.</p>
+        <!-- ① 히어로 -->
+        <section class="team-hero">
+            <div class="team-hero-inner">
+                <div class="team-hero-label">TEAM BUILD IT</div>
+                <h1>우리가 LUMI를 만듭니다</h1>
+                <p>세 명의 개발자가 각자의 전문성을 합쳐 로컬 AI의 가능성을 현실로 만들고 있습니다.</p>
+                <div class="team-hero-stats">
+                    <div class="tstat"><span>3</span>명의 개발자</div>
+                    <div class="tstat-div"></div>
+                    <div class="tstat"><span>4</span>가지 핵심 기능</div>
+                    <div class="tstat-div"></div>
+                    <div class="tstat"><span>1</span>개의 오픈소스</div>
+                </div>
             </div>
+        </section>
 
-            <!-- ── 팀원 카드 그리드 ── -->
-            <div class="team-grid">
+        <!-- ② Team Build It 설명 -->
+        <section class="team-intro-section">
+            <div class="team-intro-inner">
+
+                <!-- 왼쪽: 팀 이름 -->
+                <div class="tintro-left" data-animate>
+                    <span class="tintro-eyebrow">우리의 이름</span>
+                    <p class="tintro-team-word">Team</p>
+                    <h2 class="tintro-buildit">Build It</h2>
+                    <div class="tintro-accent-line"></div>
+                    <p class="tintro-quote">"만들며 성장한다"</p>
+                </div>
+
+                <!-- 오른쪽: 설명 -->
+                <div class="tintro-right" data-animate>
+                    <p class="tintro-lead">
+                        이름 하나에 두 가지 다짐을 담았습니다.
+                    </p>
+                    <p class="tintro-body">
+                        단순히 소프트웨어를 개발하는 팀이 아닙니다. <strong>Build It</strong>이라는 이름처럼, 우리는 LUMI라는 프로젝트를 쌓아 올리는 동시에 팀원 한 명 한 명이 개발자로서, 동료로서 매일 조금씩 성장해가고 있습니다. 코드 한 줄이 제품의 기둥이 되는 것처럼, 이 과정 하나하나가 우리 자신을 만들어가는 재료가 됩니다.
+                    </p>
+                    <div class="tintro-meanings">
+                        <div class="tintro-meaning">
+                            <div class="tmeaning-bar"></div>
+                            <div class="tmeaning-text">
+                                <strong>Build the Project</strong>
+                                <span>LUMI라는 완성도 높은 로컬 AI 어시스턴트를 하나씩 함께 쌓아 올립니다. 기술적 도전을 두려워하지 않고 정면으로 맞서갑니다.</span>
+                            </div>
+                        </div>
+                        <div class="tintro-meaning">
+                            <div class="tmeaning-bar purple"></div>
+                            <div class="tmeaning-text">
+                                <strong>Build Ourselves</strong>
+                                <span>프로젝트를 진행하며 각자가 개발자로서 더 깊어지고, 팀으로서 더 단단해집니다. 결과물만큼 과정도, 성장도 소중합니다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ③ 팀원 카드 -->
+        <section class="team-members-section">
+            <div class="team-members-inner">
 
                 <!-- 팀장 황휘 -->
-                <div class="team-card leader">
-                    <div class="team-avatar">
-                        <img
-                            src="images/hwanghwi.jpg"
-                            alt="황휘 프로필"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-                        <span class="avatar-initial" style="display:none;">휘</span>
+                <div class="member-card leader-card" id="hwanghwi" data-animate>
+                    <div class="member-left">
+                        <div class="member-avatar">
+                            <img
+                                src="images/hwanghwi.jpg"
+                                alt="황휘 프로필"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+                            <span class="avatar-initial" style="display:none;">휘</span>
+                        </div>
+                        <div class="member-id-chip">학번 20192157</div>
                     </div>
-                    <div class="team-badge">👑 팀장</div>
-                    <div class="team-name">황휘</div>
-                    <div class="team-student-id">20192157</div>
-                    <div class="team-role">UI 제작 · 프론트엔드</div>
-                    <div class="team-bio">프로젝트 전반을 이끌며 사용자 인터페이스 설계와 프론트엔드 개발을 담당합니다.</div>
+                    <div class="member-right">
+                        <div class="member-header">
+                            <div class="member-badge leader-badge">👑 팀장</div>
+                            <h2 class="member-name">황휘</h2>
+                            <div class="member-role">UI 제작 · 프론트엔드</div>
+                        </div>
+                        <p class="member-bio">LUMI 프로젝트의 팀장으로서 전반적인 개발 방향을 설정하고 팀을 이끌고 있습니다. 사용자 경험을 최우선으로 생각하며, 복잡한 AI 기술을 누구나 직관적으로 사용할 수 있는 인터페이스로 풀어내는 것을 목표로 합니다. 웹 프론트엔드 개발을 통해 LUMI의 얼굴이 되는 화면을 직접 설계하고 구현하며, 프로젝트의 시각적 정체성과 사용성을 책임지고 있습니다.</p>
+                        <div class="member-details">
+                            <div class="member-tasks">
+                                <h4>담당 업무</h4>
+                                <ul>
+                                    <li>프로젝트 기획 및 전체 개발 방향 설정</li>
+                                    <li>UI/UX 설계 및 사용자 인터랙션 디자인</li>
+                                    <li>프론트엔드 개발 (HTML · CSS · JavaScript)</li>
+                                    <li>공식 웹사이트 제작 및 유지 관리</li>
+                                </ul>
+                            </div>
+                            <div class="member-skills">
+                                <h4>기술 스택</h4>
+                                <div class="skill-tags">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                    <span>Figma</span>
+                                    <span>Git</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 팀원 강진구 -->
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <img
-                            src="images/kangjingu.jpg"
-                            alt="강진구 프로필"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-                        <span class="avatar-initial" style="display:none;">구</span>
+                <div class="member-card" id="kangjingu" data-animate>
+                    <div class="member-left">
+                        <div class="member-avatar">
+                            <img
+                                src="images/kangjingu.jpg"
+                                alt="강진구 프로필"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+                            <span class="avatar-initial" style="display:none;">구</span>
+                        </div>
+                        <div class="member-id-chip">학번 20201940</div>
                     </div>
-                    <div class="team-badge">팀원</div>
-                    <div class="team-name">강진구</div>
-                    <div class="team-student-id">20201940</div>
-                    <div class="team-role">백엔드 · 프론트엔드</div>
-                    <div class="team-bio">서버 아키텍처 설계와 프론트엔드 연동을 담당하며 안정적인 서비스 기반을 구축합니다.</div>
+                    <div class="member-right">
+                        <div class="member-header">
+                            <div class="member-badge">팀원</div>
+                            <h2 class="member-name">강진구</h2>
+                            <div class="member-role">백엔드 · 프론트엔드</div>
+                        </div>
+                        <p class="member-bio">서버 아키텍처 설계부터 프론트엔드 연동까지 폭넓은 풀스택 개발을 담당합니다. 안정적이고 확장 가능한 서비스 인프라를 구축하여 LUMI의 기술적 기반을 다지는 역할을 합니다. 백엔드와 프론트엔드 사이의 데이터 흐름을 매끄럽게 연결하며, 사용자 요청이 AI 엔진까지 빠르고 안정적으로 전달될 수 있도록 전체 통신 구조를 설계하고 최적화합니다.</p>
+                        <div class="member-details">
+                            <div class="member-tasks">
+                                <h4>담당 업무</h4>
+                                <ul>
+                                    <li>백엔드 서버 아키텍처 설계 및 구현</li>
+                                    <li>REST API 개발 및 엔드포인트 관리</li>
+                                    <li>프론트엔드-백엔드 통신 구조 연동</li>
+                                    <li>서비스 안정성 모니터링 및 최적화</li>
+                                </ul>
+                            </div>
+                            <div class="member-skills">
+                                <h4>기술 스택</h4>
+                                <div class="skill-tags">
+                                    <span>Python</span>
+                                    <span>Node.js</span>
+                                    <span>REST API</span>
+                                    <span>JavaScript</span>
+                                    <span>Git</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 팀원 조성민 -->
-                <div class="team-card">
-                    <div class="team-avatar">
-                        <img
-                            src="images/josungmin.jpg"
-                            alt="조성민 프로필"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-                        <span class="avatar-initial" style="display:none;">민</span>
+                <div class="member-card" id="josungmin" data-animate>
+                    <div class="member-left">
+                        <div class="member-avatar">
+                            <img
+                                src="images/josungmin.jpg"
+                                alt="조성민 프로필"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+                            <span class="avatar-initial" style="display:none;">민</span>
+                        </div>
+                        <div class="member-id-chip">학번 20240643</div>
                     </div>
-                    <div class="team-badge">팀원</div>
-                    <div class="team-name">조성민</div>
-                    <div class="team-student-id">20240643</div>
-                    <div class="team-role">백엔드 · DB 엔지니어링</div>
-                    <div class="team-bio">데이터베이스 설계와 백엔드 로직 구현을 담당하며 데이터 흐름을 최적화합니다.</div>
+                    <div class="member-right">
+                        <div class="member-header">
+                            <div class="member-badge">팀원</div>
+                            <h2 class="member-name">조성민</h2>
+                            <div class="member-role">백엔드 · DB 엔지니어링</div>
+                        </div>
+                        <p class="member-bio">데이터베이스 설계와 백엔드 로직 구현을 전담하며 LUMI의 데이터 흐름 전체를 책임집니다. 효율적인 데이터 구조를 설계하여 AI 모델과 사용자 데이터 간의 원활한 연동을 가능하게 하며, 대용량 데이터 처리 성능을 최적화하여 빠른 응답 속도를 유지합니다. Supabase를 기반으로 한 안정적인 데이터 저장 및 인증 시스템 구축을 담당하고 있습니다.</p>
+                        <div class="member-details">
+                            <div class="member-tasks">
+                                <h4>담당 업무</h4>
+                                <ul>
+                                    <li>데이터베이스 스키마 설계 및 최적화</li>
+                                    <li>백엔드 비즈니스 로직 구현</li>
+                                    <li>Supabase 연동 및 인증 시스템 구축</li>
+                                    <li>데이터 파이프라인 및 쿼리 성능 최적화</li>
+                                </ul>
+                            </div>
+                            <div class="member-skills">
+                                <h4>기술 스택</h4>
+                                <div class="skill-tags">
+                                    <span>Python</span>
+                                    <span>Supabase</span>
+                                    <span>SQL</span>
+                                    <span>PostgreSQL</span>
+                                    <span>Git</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-
         </section>
+
+        <!-- ③ 팀 공동 가치 -->
+        <section class="team-values-section">
+            <div class="team-members-inner">
+                <div class="team-values-head" data-animate>
+                    <span class="team-label">OUR VALUES</span>
+                    <h2>Team Build It이 추구하는 것</h2>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card" data-animate data-delay="1">
+                        <div class="value-icon">🔒</div>
+                        <h3>프라이버시 우선</h3>
+                        <p>사용자 데이터는 절대 외부로 나가서는 안 된다는 원칙 아래 LUMI의 모든 설계 결정이 이루어집니다.</p>
+                    </div>
+                    <div class="value-card" data-animate data-delay="2">
+                        <div class="value-icon">🌐</div>
+                        <h3>오픈소스 정신</h3>
+                        <p>코드는 투명하게 공개되어야 하며 누구나 기여할 수 있어야 한다고 믿습니다. 모든 소스코드는 GitHub에서 확인할 수 있습니다.</p>
+                    </div>
+                    <div class="value-card" data-animate data-delay="3">
+                        <div class="value-icon">🚀</div>
+                        <h3>사용자 중심 개발</h3>
+                        <p>기술적으로 뛰어나도 쓰기 불편하면 의미가 없습니다. 누구나 쉽게 사용할 수 있는 AI 경험을 목표로 합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <div style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">LUMI</div>
-        <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col-group">
+                <h4>기업 정보</h4>
+                <ul>
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="about.html">LUMI 소개</a></li>
+                    <li><a href="team.html">팀 소개</a></li>
+                    <li><a href="installer.html">다운로드</a></li>
+                    <li><a href="git.html">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-group">
+                <h4>고객센터</h4>
+                <ul>
+                    <li><a href="support.html">후기 · Q/A · 문의</a></li>
+                    <li><a href="auth.html">로그인 / 회원가입</a></li>
+                    <li><span>teambuildit@lumi.dev</span></li>
+                    <li><span>www.teambuildit.co.kr</span></li>
+                </ul>
+            </div>
+            <div class="footer-col-group">
+                <h4>SNS 링크</h4>
+                <ul>
+                    <li><a href="https://github.com/Starlight0307/Team-Build-It" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUMI Core Open-Source Project. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="navbar.js"></script>
+    <script>
+    (function () {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    })();
+    </script>
 </body>
 </html>
