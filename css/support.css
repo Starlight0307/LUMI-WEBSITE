@@ -7,6 +7,7 @@
  * ===================================================================== */
 
 .support-layout {
+    margin-top: 70px;
     min-height: calc(100vh - 70px);
 }
 
@@ -25,7 +26,7 @@
 .support-panel.active { display: block; }
 
 .support-section {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2.5rem 5rem;
 }
@@ -288,6 +289,18 @@
 /* =====================================================================
  * ③ 고객센터
  * ===================================================================== */
+
+#tab-contact .support-section {
+    max-width: 1100px;
+}
+
+.contact-form-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
 
 .contact-layout {
     display: grid;

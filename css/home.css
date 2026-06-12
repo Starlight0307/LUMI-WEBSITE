@@ -246,6 +246,65 @@
     50%       { transform: translateX(-50%) translateY(7px); opacity: 0.8; }
 }
 
+/* ── 로고 슬라이드 ── */
+.hero-logo-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 70px 2rem 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-logo-img {
+    max-height: 320px;
+    max-width: 80vw;
+    width: auto;
+    filter: drop-shadow(0 0 48px rgba(139,92,246,0.55)) drop-shadow(0 0 20px rgba(59,130,246,0.4));
+    animation: logoFloat 5s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px);   }
+    50%       { transform: translateY(-12px); }
+}
+
+.hero-logo-tagline {
+    font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+    color: rgba(255,255,255,0.72);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    max-width: 520px;
+}
+
+.hero-logo-slide .hero-actions {
+    margin-top: 1.4rem;
+}
+
+.hero-logo-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.2rem;
+}
+
+.hero-logo-badges span {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.88);
+    padding: 0.45rem 1.1rem;
+    border-radius: 50px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    white-space: nowrap;
+}
+
 /* =====================================================================
  * ② 프로젝트 기능 소개 (3가지 유용성 카드)
  * ===================================================================== */

@@ -116,12 +116,30 @@ document.addEventListener("DOMContentLoaded", function () {
         'team.html':      ['nav-team',     'nav-lumi-btn'],
         'installer.html': ['nav-installer','nav-dl-btn'],
         'git.html':       ['nav-git',      'nav-dl-btn'],
-        'support.html':   ['nav-reviews',  'nav-support-btn'],
     };
-    (pageMap[page] || []).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('active');
-    });
+
+    const supportHashMap = {
+        '#tab-reviews': 'nav-reviews',
+        '#tab-qa':      'nav-qa',
+        '#tab-contact': 'nav-contact',
+    };
+
+    function setActiveIds(ids) {
+        document.querySelectorAll('.mega-item.active, .nav-item.active')
+            .forEach(el => el.classList.remove('active'));
+        ids.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+        });
+    }
+
+    if (page === 'support.html') {
+        /* 초기 로드 시 해시 기반 active */
+        const hashItem = supportHashMap[window.location.hash] || 'nav-reviews';
+        setActiveIds([hashItem, 'nav-support-btn']);
+    } else {
+        setActiveIds(pageMap[page] || []);
+    }
 
     /* ── 메가 메뉴: 호버로 열고 닫기 ── */
     let closeTimer;

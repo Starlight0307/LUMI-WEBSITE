@@ -323,7 +323,7 @@
     flex: 1;
     max-width: 280px;
     text-align: center;
-    background: var(--bg-main);
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 2rem 1.6rem 1.8rem;
