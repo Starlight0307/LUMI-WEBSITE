@@ -553,6 +553,24 @@
 [data-animate][data-delay="3"] { transition-delay: 0.28s; }
 
 /* =====================================================================
+ * 팀원 캐러셀 (데스크톱: 그냥 flex column)
+ * ===================================================================== */
+
+.carousel-viewport {
+    width: 100%;
+}
+
+.member-carousel-track {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+}
+
+.member-carousel-dots { display: none; }
+.carousel-arrow-btn   { display: none; }
+
+/* =====================================================================
  * 반응형
  * ===================================================================== */
 
@@ -584,6 +602,79 @@
     .values-grid { grid-template-columns: 1fr; }
 
     .team-hero-stats { gap: 1.2rem; }
+
+    /* 모바일 캐러셀 */
+    .team-members-section .team-members-inner {
+        position: relative;
+        padding: 0 3rem;
+        gap: 0;
+    }
+
+    .carousel-viewport {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel-arrow-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: none;
+        color: var(--text-main);
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 0;
+        transition: opacity 0.2s;
+    }
+    .carousel-prev-btn { left: 0.3rem; }
+    .carousel-next-btn { right: 0.3rem; }
+    .carousel-arrow-btn:disabled { visibility: hidden; }
+    .carousel-arrow-btn:not(:disabled):active { opacity: 0.5; }
+    .member-carousel-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 300%;
+        gap: 0;
+        will-change: transform;
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .member-carousel-track .member-card {
+        width: 33.333%;
+        flex-shrink: 0;
+        border-radius: 20px;
+        padding: 1.8rem 1.4rem;
+    }
+    .member-carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1.2rem 0 0.8rem;
+    }
+    .carousel-dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background: var(--border-color);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.25s, width 0.25s, border-radius 0.25s;
+        flex-shrink: 0;
+    }
+    .carousel-dot.active {
+        background: var(--color-primary);
+        width: 20px;
+        border-radius: 4px;
+    }
 }
 
 @media (max-width: 480px) {

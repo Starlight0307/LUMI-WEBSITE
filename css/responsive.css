@@ -2,6 +2,12 @@
  * responsive.css — 반응형 (반드시 마지막에 로드)
  * ===================================================================== */
 
+/* ── 팀 캐러셀 데스크톱 기본값 ── */
+.team-carousel-row   { width: 100%; }
+.team-carousel-viewport { width: 100%; }
+.team-carousel-btn   { display: none; }
+.team-carousel-dots  { display: none; }
+
 /* ── 태블릿 이하 (1024px) ── */
 @media (max-width: 1024px) {
     .core-features {
@@ -20,13 +26,12 @@
 
 /* ── 중간 화면 (900px) ── */
 @media (max-width: 900px) {
+    .footer-col-group { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
-    }
-
-    .footer-inner {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -54,25 +59,126 @@
         justify-content: center;
     }
 
+    /* ── 모바일 내비 메뉴 ── */
     .nav-menu {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 70px;
         left: 0;
         width: 100%;
-        background-color: rgba(240, 244, 255, 0.98);
         flex-direction: column;
-        align-items: center;
-        padding: 1.5rem 0;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--border-color);
+        align-items: stretch;
+        padding: 0;
+        gap: 0;
         z-index: 999;
+        /* 스크롤 상태 기본 (흰색) */
+        background-color: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        /* navbar와 동일한 전환 속도 */
+        transition: background-color 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nav-menu.active { display: flex; }
+
+    /* 스크롤 올릴 때: backdrop-filter 즉시 제거 */
+    .top-navbar.unscrolling .nav-menu {
+        transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    .nav-menu .nav-item { color: #000; }
-    .nav-menu .nav-item:hover,
-    .nav-menu .nav-item.active { color: #000; }
-    .nav-menu.active { display: flex; }
+    /* 투명 navbar 상태 → 동일하게 투명 계열 */
+    .top-navbar:not(.scrolled) .nav-menu {
+        background-color: rgba(240, 244, 255, 0.12);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom-color: rgba(255,255,255,0.15);
+        box-shadow: none;
+    }
+
+    /* 아코디언 그룹 */
+    .mob-nav-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: border-color 0.35s ease;
+    }
+    .top-navbar.scrolled .mob-nav-group {
+        border-bottom-color: var(--border-color);
+    }
+    .mob-nav-group:last-child { border-bottom: none; }
+
+    .mob-nav-group .nav-item {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #ffffff;
+        font-size: 1rem;
+        transition: color 0.35s ease;
+    }
+    .top-navbar.scrolled .mob-nav-group .nav-item { color: #111827; }
+
+    .mob-arrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        transition: transform 0.22s;
+        opacity: 0.7;
+    }
+    .mob-nav-group.open .mob-arrow { transform: rotate(180deg); }
+
+    /* 서브 메뉴 */
+    .mob-sub {
+        display: none;
+        flex-direction: column;
+        background: rgba(240,244,255,0.08);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        transition: border-color 0.35s ease;
+    }
+    .top-navbar.scrolled .mob-sub {
+        background: rgba(0,0,0,0.03);
+        border-top-color: var(--border-color);
+    }
+    .mob-nav-group.open .mob-sub { display: flex; }
+
+    .mob-sub-link {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.78rem 1.6rem 0.78rem 2.2rem;
+        text-decoration: none;
+        color: rgba(255,255,255,0.92);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        transition: background 0.15s, border-color 0.35s ease, color 0.35s ease;
+    }
+    .mob-sub-link:last-child { border-bottom: none; }
+    .mob-sub-link:hover { background: rgba(255,255,255,0.08); }
+
+    .top-navbar.scrolled .mob-sub-link {
+        color: var(--text-main);
+        border-bottom-color: var(--border-color);
+    }
+    .top-navbar.scrolled .mob-sub-link:hover { background: var(--bg-main); }
+
+    .mob-sub-icon { font-size: 1.05rem; flex-shrink: 0; }
+
+    .mob-sub-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+    .mob-sub-text strong { font-size: 0.88rem; font-weight: 600; }
+    .mob-sub-text em {
+        font-style: normal;
+        font-size: 0.73rem;
+        color: rgba(255,255,255,0.65);
+        transition: color 0.35s ease;
+    }
+    .top-navbar.scrolled .mob-sub-text em { color: var(--text-muted); }
+
     .nav-item::after { display: none; }
 
     /* 섹션 공통 */
@@ -97,12 +203,82 @@
         gap: 1.2rem;
     }
 
-    /* 팀 카드 */
-    .team-cards {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        max-width: 380px;
+    /* 팀 카드 캐러셀 */
+    .team-carousel-row {
+        position: relative;
+    }
+
+    .team-carousel-viewport {
+        display: block;
+        overflow: hidden;
+        max-width: 300px;
         margin: 0 auto;
+    }
+
+    .team-cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        grid-template-columns: none;
+        width: 300%;
+        gap: 0;
+        max-width: none;
+        margin: 0;
+        will-change: transform;
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-card {
+        width: 33.333%;
+        flex-shrink: 0;
+    }
+
+    .team-carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: none;
+        color: var(--text-main);
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 0;
+        z-index: 2;
+        transition: opacity 0.2s;
+    }
+    .team-carousel-prev { left: -1rem; }
+    .team-carousel-next { right: -1rem; }
+    .team-carousel-btn:disabled { visibility: hidden; }
+    .team-carousel-btn:not(:disabled):active { opacity: 0.5; }
+
+    .team-carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1.2rem 0 0.2rem;
+    }
+
+    .team-dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background: var(--border-color);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.25s, width 0.25s, border-radius 0.25s;
+        flex-shrink: 0;
+    }
+    .team-dot.active {
+        background: var(--color-primary);
+        width: 20px;
+        border-radius: 4px;
     }
 
     .team-avatar-wrap {

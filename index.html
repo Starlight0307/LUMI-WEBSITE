@@ -100,6 +100,9 @@
                 <h2>Team Build It</h2>
                 <p>카드를 클릭하면 팀원 상세 소개를 볼 수 있습니다.</p>
             </div>
+            <div class="team-carousel-row">
+            <button class="team-carousel-btn team-carousel-prev" aria-label="이전" disabled>&#10094;</button>
+            <div class="team-carousel-viewport">
             <div class="team-cards">
                 <a href="team.html#hwanghwi" class="team-card" data-animate data-delay="1">
                     <div class="team-photo">
@@ -146,6 +149,14 @@
                         <span class="team-foot-role">백엔드 · DB 엔지니어링</span>
                     </div>
                 </a>
+            </div>
+            </div><!-- /.team-carousel-viewport -->
+            <button class="team-carousel-btn team-carousel-next" aria-label="다음">&#10095;</button>
+            </div><!-- /.team-carousel-row -->
+            <div class="team-carousel-dots">
+                <button class="team-dot active" data-index="0"></button>
+                <button class="team-dot" data-index="1"></button>
+                <button class="team-dot" data-index="2"></button>
             </div>
         </div>
     </section>
@@ -372,6 +383,48 @@
         }, { threshold: 0.12 });
 
         document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    })();
+
+    /* ── 팀원 캐러셀 ── */
+    (function () {
+        const viewport = document.querySelector('.team-carousel-viewport');
+        const track    = document.querySelector('.team-carousel-viewport .team-cards');
+        const prevBtn  = document.querySelector('.team-carousel-prev');
+        const nextBtn  = document.querySelector('.team-carousel-next');
+        const dots     = document.querySelectorAll('.team-dot');
+        if (!viewport || !track) return;
+
+        const cards = Array.from(track.querySelectorAll('.team-card'));
+        const total = cards.length;
+        const STEP  = 100 / total;
+        let current = 0;
+
+        track.querySelectorAll('[data-animate]').forEach(c => c.classList.add('is-visible'));
+
+        function updateUI() {
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            if (prevBtn) prevBtn.disabled = current === 0;
+            if (nextBtn) nextBtn.disabled = current === total - 1;
+        }
+
+        function goTo(idx) {
+            current = Math.max(0, Math.min(idx, total - 1));
+            track.style.transform = `translateX(-${current * STEP}%)`;
+            updateUI();
+        }
+
+        updateUI();
+        dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+        if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                current = 0;
+                track.style.transform = '';
+                updateUI();
+            }
+        });
     })();
 
     </script>

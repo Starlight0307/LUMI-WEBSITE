@@ -7,11 +7,49 @@ document.addEventListener("DOMContentLoaded", function () {
             <a class="nav-logo" href="index.html">LUMI</a>
 
             <nav class="nav-menu" id="nav-menu">
-                <button class="nav-item nav-mega-trigger" id="nav-lumi-btn">LUMI 소개</button>
-
-                <button class="nav-item nav-mega-trigger" id="nav-dl-btn">다운로드</button>
-
-                <button class="nav-item nav-mega-trigger" id="nav-support-btn">고객지원</button>
+                <div class="mob-nav-group">
+                    <button class="nav-item nav-mega-trigger" id="nav-lumi-btn">LUMI 소개 <span class="mob-arrow">▾</span></button>
+                    <div class="mob-sub">
+                        <a href="about.html" class="mob-sub-link">
+                            <span class="mob-sub-icon">💡</span>
+                            <span class="mob-sub-text"><strong>LUMI 소개</strong><em>프로젝트 개요 · 기능 · 비교</em></span>
+                        </a>
+                        <a href="team.html" class="mob-sub-link">
+                            <span class="mob-sub-icon">👥</span>
+                            <span class="mob-sub-text"><strong>팀 소개</strong><em>Team Build It 멤버</em></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="mob-nav-group">
+                    <button class="nav-item nav-mega-trigger" id="nav-dl-btn">다운로드 <span class="mob-arrow">▾</span></button>
+                    <div class="mob-sub">
+                        <a href="installer.html" class="mob-sub-link">
+                            <span class="mob-sub-icon">📦</span>
+                            <span class="mob-sub-text"><strong>설치 파일 다운로드</strong><em>Windows · macOS · Linux</em></span>
+                        </a>
+                        <a href="git.html" class="mob-sub-link">
+                            <span class="mob-sub-icon">🐙</span>
+                            <span class="mob-sub-text"><strong>Git에서 다운로드</strong><em>소스코드 클론 · 빌드</em></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="mob-nav-group">
+                    <button class="nav-item nav-mega-trigger" id="nav-support-btn">고객지원 <span class="mob-arrow">▾</span></button>
+                    <div class="mob-sub">
+                        <a href="support.html#tab-reviews" class="mob-sub-link">
+                            <span class="mob-sub-icon">⭐</span>
+                            <span class="mob-sub-text"><strong>사용자 후기</strong><em>평점 · 리뷰 작성</em></span>
+                        </a>
+                        <a href="support.html#tab-qa" class="mob-sub-link">
+                            <span class="mob-sub-icon">❓</span>
+                            <span class="mob-sub-text"><strong>Q / A</strong><em>자주 묻는 질문</em></span>
+                        </a>
+                        <a href="support.html#tab-contact" class="mob-sub-link">
+                            <span class="mob-sub-icon">📧</span>
+                            <span class="mob-sub-text"><strong>고객센터</strong><em>문의 · 버그 리포트</em></span>
+                        </a>
+                    </div>
+                </div>
             </nav>
 
             <!-- 메가 메뉴 패널 (navbar 전체 너비) -->
@@ -163,11 +201,15 @@ document.addEventListener("DOMContentLoaded", function () {
     megaPanel.addEventListener('mouseenter', openMega);
     megaPanel.addEventListener('mouseleave', closeMega);
 
-    /* 모바일: 클릭으로 토글 */
+    /* 모바일: 아코디언 토글 */
     megaTriggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
             if (window.innerWidth > 768) return;
-            megaPanel.classList.toggle('open');
+            const group = trigger.closest('.mob-nav-group');
+            if (!group) return;
+            const isOpen = group.classList.contains('open');
+            document.querySelectorAll('.mob-nav-group.open').forEach(g => g.classList.remove('open'));
+            if (!isOpen) group.classList.add('open');
         });
     });
 
@@ -184,6 +226,9 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            if (!navMenu.classList.contains('active')) {
+                document.querySelectorAll('.mob-nav-group.open').forEach(g => g.classList.remove('open'));
+            }
         });
     }
 
@@ -194,8 +239,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isIndex) {
         navbar.classList.add('scrolled');
     } else {
+        let unscrollTimer;
         function onScroll() {
-            navbar.classList.toggle('scrolled', window.scrollY > 80);
+            if (window.scrollY > 80) {
+                clearTimeout(unscrollTimer);
+                navbar.classList.remove('unscrolling');
+                navbar.classList.add('scrolled');
+            } else if (navbar.classList.contains('scrolled')) {
+                navbar.classList.add('unscrolling');
+                navbar.classList.remove('scrolled');
+                unscrollTimer = setTimeout(() => navbar.classList.remove('unscrolling'), 350);
+            }
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();

@@ -24,6 +24,11 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+/* 스크롤 올릴 때: backdrop-filter를 transition 목록에서 제외 → 즉시 제거 */
+.top-navbar.unscrolling {
+    transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
 /* ★ 투명 상태일 때 로고·메뉴 텍스트를 흰색으로 (히어로 배경 위 가독성) */
 .top-navbar:not(.scrolled) .nav-item {
     color: rgba(255, 255, 255, 0.85);
@@ -204,7 +209,9 @@
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease,
+                background-color 0.35s ease, border-color 0.35s ease,
+                backdrop-filter 0.35s ease, box-shadow 0.35s ease;
 }
 
 .nav-mega-panel.open {
@@ -307,6 +314,37 @@
     display: block;
 }
 
+/* ── 투명 navbar 상태: 메가 패널도 반투명 글라스 ── */
+.top-navbar:not(.scrolled) .nav-mega-panel {
+    background: rgba(240, 244, 255, 0.10);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: rgba(255,255,255,0.12);
+    box-shadow: none;
+}
+.top-navbar:not(.scrolled) .mega-group-title {
+    color: rgba(255,255,255,0.5);
+}
+.top-navbar:not(.scrolled) .mega-item {
+    color: rgba(255,255,255,0.88);
+}
+.top-navbar:not(.scrolled) .mega-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+.top-navbar:not(.scrolled) .mega-item.active {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+}
+.top-navbar:not(.scrolled) .mega-icon {
+    background: rgba(255,255,255,0.08);
+}
+.top-navbar:not(.scrolled) .mega-text em {
+    color: rgba(255,255,255,0.5);
+}
+.top-navbar:not(.scrolled) .mega-divider {
+    background: rgba(255,255,255,0.12);
+}
+
 /* ── 투명 navbar에서 메가 트리거 흰색 ── */
 .top-navbar:not(.scrolled) .nav-mega-trigger {
     color: rgba(255,255,255,0.85);
@@ -317,35 +355,13 @@
     color: #ffffff;
 }
 
-/* ── 모바일 메가 메뉴 ── */
+/* ── 데스크톱: mob- 요소 투명 처리 ── */
+.mob-nav-group { display: contents; }
+.mob-sub       { display: none; }
+.mob-arrow     { display: none; }
+
+/* ── 모바일: 메가 패널 완전 숨김 (아코디언으로 대체) ── */
 @media (max-width: 768px) {
-    .nav-mega-panel {
-        position: static;
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
-        display: none;
-        box-shadow: none;
-        border-top: 1px solid var(--border-color);
-        border-bottom: none;
-        backdrop-filter: none;
-        background: rgba(240,244,255,0.98);
-    }
-
-    .nav-mega-panel.open { display: block; }
-
-    .mega-inner {
-        flex-direction: column;
-        gap: 0;
-        padding: 0.5rem 1.2rem 1rem;
-    }
-
-    .mega-divider { display: none; }
-
-    .mega-group { padding: 0.6rem 0; border-bottom: 1px solid var(--border-color); }
-    .mega-group:last-child { border-bottom: none; }
-
-    .mega-icon { display: none; }
-    .mega-item { padding: 0.55rem 0.4rem; }
-    .mega-text strong { font-size: 0.9rem; }
+    .nav-mega-panel,
+    .nav-mega-panel.open { display: none !important; }
 }

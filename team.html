@@ -78,6 +78,8 @@
         <!-- ③ 팀원 카드 -->
         <section class="team-members-section">
             <div class="team-members-inner">
+                <div class="carousel-viewport">
+                <div class="member-carousel-track">
 
                 <!-- 팀장 황휘 -->
                 <div class="member-card leader-card" id="hwanghwi" data-animate>
@@ -210,6 +212,16 @@
                         </div>
                     </div>
                 </div>
+                </div><!-- /.member-carousel-track -->
+                </div><!-- /.carousel-viewport -->
+                <button class="carousel-arrow-btn carousel-prev-btn" aria-label="이전" disabled>&#10094;</button>
+                <button class="carousel-arrow-btn carousel-next-btn" aria-label="다음">&#10095;</button>
+
+                <div class="member-carousel-dots">
+                    <button class="carousel-dot active" data-index="0" aria-label="황휘"></button>
+                    <button class="carousel-dot" data-index="1" aria-label="강진구"></button>
+                    <button class="carousel-dot" data-index="2" aria-label="조성민"></button>
+                </div>
 
             </div>
         </section>
@@ -308,6 +320,38 @@
             });
         }, { threshold: 0.08 });
         document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+        /* ── 팀원 캐러셀 ── */
+        const track   = document.querySelector('.member-carousel-track');
+        const dots    = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.querySelector('.carousel-prev-btn');
+        const nextBtn = document.querySelector('.carousel-next-btn');
+        if (track) {
+            let current = 0;
+            const memberCards = Array.from(track.querySelectorAll('.member-card'));
+            const total = memberCards.length;
+            const STEP = 100 / total;
+
+            track.querySelectorAll('[data-animate]').forEach(c => c.classList.add('is-visible'));
+
+            function updateUI() {
+                dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                if (prevBtn) prevBtn.disabled = current === 0;
+                if (nextBtn) nextBtn.disabled = current === total - 1;
+            }
+
+            function goTo(idx) {
+                current = Math.max(0, Math.min(idx, total - 1));
+                track.style.transform = `translateX(-${current * STEP}%)`;
+                updateUI();
+            }
+
+            updateUI();
+
+            dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+            if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+        }
     })();
     </script>
 </body>
