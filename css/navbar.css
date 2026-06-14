@@ -1,46 +1,35 @@
 /* =====================================================================
- * navbar.css — 상단 네비게이션 바
+ * navbar.css — 상단 네비게이션 바 (메가 메뉴 포함)
  * ===================================================================== */
 
 .top-navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    /* ★ 기본 상태: 완전 투명 — 히어로 배경이 그대로 비침 */
+    top: 0; left: 0;
+    width: 100%; height: 70px;
     background-color: transparent;
     border-bottom: 1px solid transparent;
     z-index: 1000;
-    /* ★ 배경·테두리 색상 전환 애니메이션 */
     transition: background-color 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 
-/* ★ JS가 scroll 시 .scrolled 클래스 추가 → 라이트 배경 + 블러 적용 */
 .top-navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: rgba(255,255,255,0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
 }
 
-/* 스크롤 올릴 때: backdrop-filter를 transition 목록에서 제외 → 즉시 제거 */
 .top-navbar.unscrolling {
     transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
-/* ★ 투명 상태일 때 로고·메뉴 텍스트를 흰색으로 (히어로 배경 위 가독성) */
-.top-navbar:not(.scrolled) .nav-item {
-    color: rgba(255, 255, 255, 0.85);
-}
+/* 투명 상태: 텍스트 흰색 */
+.top-navbar:not(.scrolled) .nav-item        { color: rgba(255,255,255,0.85); }
 .top-navbar:not(.scrolled) .nav-item:hover,
-.top-navbar:not(.scrolled) .nav-item.active {
-    color: #ffffff;
-}
-.top-navbar:not(.scrolled) .menu-toggle {
-    color: #ffffff;
-}
+.top-navbar:not(.scrolled) .nav-item.active { color: #ffffff; }
+.top-navbar:not(.scrolled) .menu-toggle     { color: #ffffff; }
 
+/* ── 컨테이너 ── */
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -51,11 +40,11 @@
     padding: 0 2rem;
 }
 
+/* ── 로고 ── */
 .nav-logo {
     font-size: 1.6rem;
     font-weight: 850;
     letter-spacing: 1.5px;
-    width: fit-content;
     background: linear-gradient(to right, var(--color-primary), var(--color-purple));
     -webkit-background-clip: text;
     background-clip: text;
@@ -67,14 +56,7 @@
     text-decoration: none;
 }
 
-.nav-logo-img {
-    height: 28px;
-    width: auto;
-    display: block;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
+/* ── 중앙 메뉴 ── */
 .nav-menu {
     display: flex;
     gap: 3.5rem;
@@ -91,23 +73,26 @@
     padding: 0.5rem 0;
     text-decoration: none;
     white-space: nowrap;
+    background: none;
+    border: none;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .nav-item:hover,
-.nav-item.active {
-    color: #000000;
-}
+.nav-item.active { color: #000000; }
 
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
     background: linear-gradient(to right, var(--color-primary), var(--color-purple));
 }
 
+/* ── 우측 로그인 ── */
 .nav-right {
     display: flex;
     justify-content: flex-end;
@@ -135,6 +120,7 @@
     transform: translateY(-1px);
 }
 
+/* ── 모바일 묶음 ── */
 .nav-mobile-actions {
     display: none;
     align-items: center;
@@ -157,9 +143,7 @@
     white-space: nowrap;
 }
 
-.btn-login-mobile:hover {
-    opacity: 0.85;
-}
+.btn-login-mobile:hover { opacity: 0.85; }
 
 .menu-toggle {
     display: none;
@@ -167,12 +151,12 @@
     color: #000000;
     cursor: pointer;
     user-select: none;
-    transition: color 0.25s ease, transform 0.2s ease;
+    transition: color 0.25s ease;
     line-height: 1;
 }
 
 /* =====================================================================
- * 메가 메뉴
+ * 메가 메뉴 패널
  * ===================================================================== */
 
 .nav-mega-trigger {
@@ -185,19 +169,13 @@
     cursor: pointer;
 }
 
-.dd-arrow {
-    font-size: 0.65rem;
-    transition: transform 0.22s;
-    display: inline-block;
-}
+/* .mob-arrow: 데스크톱에서 숨김 */
+.mob-arrow { display: none; }
 
-.nav-mega-trigger.mega-open .dd-arrow { transform: rotate(180deg); }
-
-/* ── 메가 패널 — navbar 아래 전체 너비 ── */
+/* ── 메가 패널 본체 ── */
 .nav-mega-panel {
     position: fixed;
-    top: 70px;
-    left: 0;
+    top: 70px; left: 0;
     width: 100%;
     background: rgba(255,255,255,0.98);
     backdrop-filter: blur(20px);
@@ -205,15 +183,14 @@
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 16px 48px rgba(0,0,0,0.10);
     z-index: 999;
-    /* 애니메이션 */
+    /* 기본: 숨김 상태 */
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
-    transition: opacity 0.22s ease, transform 0.22s ease,
-                background-color 0.35s ease, border-color 0.35s ease,
-                backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
+/* .open 클래스가 붙으면 표시 */
 .nav-mega-panel.open {
     opacity: 1;
     transform: translateY(0);
@@ -224,13 +201,12 @@
 .mega-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 2rem;
+    padding: 2rem;
     display: flex;
     gap: 0;
     align-items: flex-start;
 }
 
-/* 그룹 구분선 */
 .mega-divider {
     width: 1px;
     background: var(--border-color);
@@ -239,7 +215,6 @@
     flex-shrink: 0;
 }
 
-/* 각 그룹 */
 .mega-group {
     flex: 1;
     display: flex;
@@ -257,7 +232,7 @@
     padding: 0 0.6rem;
 }
 
-/* 각 링크 항목 */
+/* ── 메가 메뉴 링크 항목 ── */
 .mega-item {
     display: flex;
     align-items: center;
@@ -269,17 +244,15 @@
     transition: background 0.15s;
 }
 
-.mega-item:hover { background: var(--bg-main); }
-
-.mega-item.active {
+.mega-item:hover         { background: var(--bg-main); }
+.mega-item.active        {
     background: rgba(59,130,246,0.07);
     color: var(--color-primary);
 }
 
 .mega-icon {
     font-size: 1.4rem;
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border-radius: 10px;
     background: var(--bg-main);
     display: flex;
@@ -290,9 +263,7 @@
 }
 
 .mega-item:hover .mega-icon,
-.mega-item.active .mega-icon {
-    background: rgba(59,130,246,0.1);
-}
+.mega-item.active .mega-icon { background: rgba(59,130,246,0.1); }
 
 .mega-text {
     display: flex;
@@ -314,53 +285,30 @@
     display: block;
 }
 
-/* ── 투명 navbar 상태: 메가 패널도 반투명 글라스 ── */
+/* 투명 navbar 상태: 메가 패널도 글라스 스타일 */
 .top-navbar:not(.scrolled) .nav-mega-panel {
-    background: rgba(240, 244, 255, 0.10);
+    background: rgba(240,244,255,0.10);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-bottom-color: rgba(255,255,255,0.12);
     box-shadow: none;
 }
-.top-navbar:not(.scrolled) .mega-group-title {
-    color: rgba(255,255,255,0.5);
-}
-.top-navbar:not(.scrolled) .mega-item {
-    color: rgba(255,255,255,0.88);
-}
-.top-navbar:not(.scrolled) .mega-item:hover {
-    background: rgba(255,255,255,0.08);
-}
-.top-navbar:not(.scrolled) .mega-item.active {
-    background: rgba(255,255,255,0.12);
-    color: #ffffff;
-}
-.top-navbar:not(.scrolled) .mega-icon {
-    background: rgba(255,255,255,0.08);
-}
-.top-navbar:not(.scrolled) .mega-text em {
-    color: rgba(255,255,255,0.5);
-}
-.top-navbar:not(.scrolled) .mega-divider {
-    background: rgba(255,255,255,0.12);
-}
-
-/* ── 투명 navbar에서 메가 트리거 흰색 ── */
-.top-navbar:not(.scrolled) .nav-mega-trigger {
-    color: rgba(255,255,255,0.85);
-}
+.top-navbar:not(.scrolled) .mega-group-title { color: rgba(255,255,255,0.5); }
+.top-navbar:not(.scrolled) .mega-item        { color: rgba(255,255,255,0.88); }
+.top-navbar:not(.scrolled) .mega-item:hover  { background: rgba(255,255,255,0.08); }
+.top-navbar:not(.scrolled) .mega-item.active { background: rgba(255,255,255,0.12); color: #fff; }
+.top-navbar:not(.scrolled) .mega-icon        { background: rgba(255,255,255,0.08); }
+.top-navbar:not(.scrolled) .mega-text em     { color: rgba(255,255,255,0.5); }
+.top-navbar:not(.scrolled) .mega-divider     { background: rgba(255,255,255,0.12); }
+.top-navbar:not(.scrolled) .nav-mega-trigger { color: rgba(255,255,255,0.85); }
 .top-navbar:not(.scrolled) .nav-mega-trigger:hover,
-.top-navbar:not(.scrolled) .nav-mega-trigger.active,
-.top-navbar:not(.scrolled) .nav-mega-trigger.mega-open {
-    color: #ffffff;
-}
+.top-navbar:not(.scrolled) .nav-mega-trigger.mega-open { color: #ffffff; }
 
-/* ── 데스크톱: mob- 요소 투명 처리 ── */
+/* 데스크톱: mob- 요소 투명 처리 */
 .mob-nav-group { display: contents; }
 .mob-sub       { display: none; }
-.mob-arrow     { display: none; }
 
-/* ── 모바일: 메가 패널 완전 숨김 (아코디언으로 대체) ── */
+/* 모바일: 메가 패널 숨김 */
 @media (max-width: 768px) {
     .nav-mega-panel,
     .nav-mega-panel.open { display: none !important; }
