@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMI - 후기 · Q/A · 고객센터</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/page-light.css">
     <link rel="stylesheet" href="css/navbar.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/bs-overrides.css">
 </head>
 <body>
 
@@ -23,7 +25,6 @@
             <!-- ① 사용자 후기 -->
             <section id="tab-reviews">
                 <div class="support-section">
-
                     <div class="page-header">
                         <h1>사용자 후기</h1>
                         <p>LUMI를 경험한 사용자들의 솔직한 이야기입니다.</p>
@@ -37,31 +38,11 @@
                             <span class="rating-count">총 4개 후기</span>
                         </div>
                         <div class="rating-bars">
-                            <div class="rating-bar-row">
-                                <span>5점</span>
-                                <div class="rating-bar-track"><div class="rating-bar-fill" style="width:75%"></div></div>
-                                <span>3</span>
-                            </div>
-                            <div class="rating-bar-row">
-                                <span>4점</span>
-                                <div class="rating-bar-track"><div class="rating-bar-fill" style="width:25%"></div></div>
-                                <span>1</span>
-                            </div>
-                            <div class="rating-bar-row">
-                                <span>3점</span>
-                                <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
-                                <span>0</span>
-                            </div>
-                            <div class="rating-bar-row">
-                                <span>2점</span>
-                                <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
-                                <span>0</span>
-                            </div>
-                            <div class="rating-bar-row">
-                                <span>1점</span>
-                                <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
-                                <span>0</span>
-                            </div>
+                            <div class="rating-bar-row"><span>5점</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:75%"></div></div><span>3</span></div>
+                            <div class="rating-bar-row"><span>4점</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:25%"></div></div><span>1</span></div>
+                            <div class="rating-bar-row"><span>3점</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span>0</span></div>
+                            <div class="rating-bar-row"><span>2점</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span>0</span></div>
+                            <div class="rating-bar-row"><span>1점</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span>0</span></div>
                         </div>
                     </div>
 
@@ -76,7 +57,7 @@
                                     <div class="review-stars-sm">★★★★★</div>
                                 </div>
                             </div>
-                            <p>"재택근무 중에 여러 앱을 오가는 번거로움이 없어졌어요. 하나의 창에서 모든 걸 처리하니 집중력이 훨씬 높아졌습니다."</p>
+                            <p>"재택근무 중에 여러 앱을 오가는 번거로움이 없어졌어요."</p>
                             <div class="review-tags"><span>생산성</span><span>시스템 모니터링</span></div>
                         </div>
                         <div class="review-item" data-animate data-delay="2">
@@ -100,7 +81,7 @@
                                     <div class="review-stars-sm">★★★★☆</div>
                                 </div>
                             </div>
-                            <p>"LUMI가 CPU 상태를 바로 알려주고 정리까지 제안해줘서 너무 편해요."</p>
+                            <p>"CPU 상태를 바로 알려주고 정리까지 제안해줘서 너무 편해요."</p>
                             <div class="review-tags"><span>PC 최적화</span><span>학습 목적</span></div>
                         </div>
                         <div class="review-item" data-animate data-delay="4">
@@ -128,17 +109,20 @@
                             <span class="star-pick" data-v="4">★</span>
                             <span class="star-pick" data-v="5">★</span>
                         </div>
-                        <textarea placeholder="사용 후기를 입력해주세요..." rows="4"></textarea>
-                        <button class="btn btn-primary" onclick="alert('후기가 등록되었습니다. (데모)')">후기 등록</button>
+                        <!--
+                            BS: form-control → textarea 기본 스타일 (resize·border·focus)
+                                support.css의 배경색·테두리 커스텀은 유지
+                        -->
+                        <textarea class="form-control" placeholder="사용 후기를 입력해주세요..." rows="4"></textarea>
+                        <button class="btn btn-primary mt-2"
+                                onclick="alert('후기가 등록되었습니다. (데모)')">후기 등록</button>
                     </div>
-
                 </div>
             </section>
 
             <!-- ② Q / A -->
             <section id="tab-qa">
                 <div class="support-section">
-
                     <div class="page-header">
                         <h1>자주 묻는 질문</h1>
                         <p>LUMI 사용 중 궁금한 점들을 정리했습니다.</p>
@@ -152,135 +136,231 @@
                         <button class="qa-cat" data-cat="etc">기타</button>
                     </div>
 
-                    <div class="qa-full-list" data-animate>
-                        <details class="qa-full-item" data-cat="install">
-                            <summary>LUMI는 인터넷 연결 없이도 사용 가능한가요?</summary>
-                            <div class="qa-answer"><p>네. LUMI는 완전한 오프라인 환경에서 동작하도록 설계되었습니다. 최초 설치 및 모델 다운로드 이후에는 인터넷 연결 없이도 모든 AI 기능을 사용할 수 있습니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="install">
-                            <summary>어떤 GPU가 필요한가요?</summary>
-                            <div class="qa-answer"><p>NVIDIA RTX 3060 이상(VRAM 6GB+) 또는 Apple M 시리즈 칩셋을 권장합니다. GPU가 없는 환경에서도 CPU 모드로 제한적 동작이 가능합니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="install">
-                            <summary>Windows 외 OS도 지원하나요?</summary>
-                            <div class="qa-answer"><p>Windows 10/11, macOS(Apple Silicon M1/M2/M3), Ubuntu 20.04 LTS 이상을 지원합니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="install">
-                            <summary>필요한 최소 사양이 어떻게 되나요?</summary>
-                            <div class="qa-answer"><p>RAM 16GB 이상, VRAM 6GB 이상의 GPU, SSD 여유 공간 10GB 이상을 권장합니다. 자세한 사양은 <a href="installer.html">다운로드 페이지</a>에서 확인하세요.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="usage">
-                            <summary>어떤 AI 모델을 사용하나요?</summary>
-                            <div class="qa-answer"><p>Ollama 기반으로 Llama, Mistral, Gemma 등 다양한 오픈소스 LLM을 지원합니다. 사용자가 원하는 모델을 자유롭게 선택하여 로컬에서 구동할 수 있습니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="usage">
-                            <summary>IoT 기기 연동은 어떻게 하나요?</summary>
-                            <div class="qa-answer"><p>스마트홈 허브(Home Assistant 등)와 연동하거나 직접 API를 통해 IoT 기기를 등록할 수 있습니다. GitHub 저장소의 Wiki를 참고해 주세요.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="security">
-                            <summary>개인 데이터는 어떻게 보호되나요?</summary>
-                            <div class="qa-answer"><p>모든 데이터는 사용자의 로컬 기기에만 저장되며 외부 서버로 전송되지 않습니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="security">
-                            <summary>오픈소스인데 보안이 괜찮나요?</summary>
-                            <div class="qa-answer"><p>오픈소스는 코드가 공개되어 보안 취약점이 빠르게 발견·수정됩니다. GitHub에서 직접 코드를 확인하실 수 있습니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="etc">
-                            <summary>오픈소스인가요? 무료로 사용할 수 있나요?</summary>
-                            <div class="qa-answer"><p>네. LUMI는 완전한 오픈소스 프로젝트로 무료로 사용할 수 있습니다.</p></div>
-                        </details>
-                        <details class="qa-full-item" data-cat="etc">
-                            <summary>버그나 기능 요청은 어디에 남기나요?</summary>
-                            <div class="qa-answer"><p>GitHub Issues 또는 고객센터 폼을 통해 남겨주세요. 적극적으로 검토하여 반영하겠습니다.</p></div>
-                        </details>
-                    </div>
+                    <!--
+                        BS: accordion accordion-flush
+                            → <details>의 네이티브 아코디언 대신
+                              Bootstrap Accordion 컴포넌트로 교체
+                              (JS 자동 처리, aria 접근성 내장)
+                            qa-full-item의 커스텀 테두리·배경·hover는 support.css 유지
+                    -->
+                    <div class="accordion qa-full-list" id="qaAccordion" data-animate>
 
+                        <div class="accordion-item qa-full-item" data-cat="install">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa1">
+                                    LUMI는 인터넷 연결 없이도 사용 가능한가요?
+                                </button>
+                            </h2>
+                            <div id="qa1" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>네. 최초 설치 및 모델 다운로드 이후에는 인터넷 연결 없이도 모든 AI 기능을 사용할 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="install">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa2">
+                                    어떤 GPU가 필요한가요?
+                                </button>
+                            </h2>
+                            <div id="qa2" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>NVIDIA RTX 3060 이상(VRAM 6GB+) 또는 Apple M 시리즈 칩셋을 권장합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="install">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa3">
+                                    Windows 외 OS도 지원하나요?
+                                </button>
+                            </h2>
+                            <div id="qa3" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>Windows 10/11, macOS(Apple Silicon M1/M2/M3), Ubuntu 20.04 LTS 이상을 지원합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="usage">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa4">
+                                    어떤 AI 모델을 사용하나요?
+                                </button>
+                            </h2>
+                            <div id="qa4" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>Ollama 기반으로 Llama, Mistral, Gemma 등 다양한 오픈소스 LLM을 지원합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="usage">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa5">
+                                    IoT 기기 연동은 어떻게 하나요?
+                                </button>
+                            </h2>
+                            <div id="qa5" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>스마트홈 허브(Home Assistant 등)와 연동하거나 직접 API를 통해 IoT 기기를 등록할 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="security">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa6">
+                                    개인 데이터는 어떻게 보호되나요?
+                                </button>
+                            </h2>
+                            <div id="qa6" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>모든 데이터는 사용자의 로컬 기기에만 저장되며 외부 서버로 전송되지 않습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="etc">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa7">
+                                    오픈소스인가요? 무료로 사용할 수 있나요?
+                                </button>
+                            </h2>
+                            <div id="qa7" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>네. LUMI는 완전한 오픈소스 프로젝트로 무료로 사용할 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item qa-full-item" data-cat="etc">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#qa8">
+                                    버그나 기능 요청은 어디에 남기나요?
+                                </button>
+                            </h2>
+                            <div id="qa8" class="accordion-collapse collapse" data-bs-parent="#qaAccordion">
+                                <div class="accordion-body qa-answer">
+                                    <p>GitHub Issues 또는 고객센터 폼을 통해 남겨주세요.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /accordion -->
                 </div>
             </section>
 
             <!-- ③ 고객센터 -->
             <section id="tab-contact">
                 <div class="support-section">
-
                     <div class="page-header">
                         <h1>고객센터</h1>
                         <p>궁금한 점이나 문의 사항을 남겨주세요. 빠르게 답변드리겠습니다.</p>
                     </div>
 
                     <div class="contact-form-box">
-                    <div class="contact-layout">
-                        <div class="contact-main" data-animate>
-                            <h3>문의 보내기</h3>
-                            <form class="contact-form-full">
-                                <div class="form-row-2">
-                                    <div class="form-group">
-                                        <label for="c-name">이름</label>
-                                        <input type="text" id="c-name" placeholder="홍길동">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="c-email">이메일</label>
-                                        <input type="email" id="c-email" placeholder="example@email.com">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="c-type">문의 유형</label>
-                                    <select id="c-type">
-                                        <option value="">선택해주세요</option>
-                                        <option>설치 · 환경 문제</option>
-                                        <option>버그 리포트</option>
-                                        <option>기능 요청</option>
-                                        <option>기업 도입 문의</option>
-                                        <option>기타</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="c-subject">제목</label>
-                                    <input type="text" id="c-subject" placeholder="문의 제목을 입력해주세요">
-                                </div>
-                                <div class="form-group">
-                                    <label for="c-message">내용</label>
-                                    <textarea id="c-message" rows="6" placeholder="문의 내용을 자세히 입력해주세요..."></textarea>
-                                </div>
-                                <button type="button" class="btn btn-primary btn-full"
-                                    onclick="alert('문의가 접수되었습니다.')">
-                                    문의 보내기
-                                </button>
-                            </form>
-                        </div>
+                        <!--
+                            BS: row g-4 → contact-layout의 grid 2열 대체
+                                col-lg-8 / col-lg-4 → 메인 폼(넓음) / 사이드 정보(좁음)
+                        -->
+                        <div class="row g-4">
 
-                        <div class="contact-aside" data-animate data-delay="2">
-                            <h3>연락처 정보</h3>
-                            <div class="contact-info-list">
-                                <div class="contact-info-row">
-                                    <span class="contact-icon">📧</span>
-                                    <div>
-                                        <strong>이메일</strong>
-                                        <span>teambuildit@lumi.dev</span>
+                            <!-- 문의 폼 -->
+                            <div class="col-12 col-lg-8 contact-main" data-animate>
+                                <h3>문의 보내기</h3>
+                                <!--
+                                    BS: row g-3 → 폼 내부 간격
+                                        col-md-6 → 이름·이메일 2열 배치
+                                        form-label, form-control, form-select
+                                          → 모든 입력 요소 스타일 통일
+                                        support.css의 배경·테두리·포커스 글로우 유지
+                                -->
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="c-name" class="form-label">이름</label>
+                                        <input type="text" id="c-name" class="form-control" placeholder="홍길동">
                                     </div>
-                                </div>
-                                <div class="contact-info-row">
-                                    <span class="contact-icon">🐙</span>
-                                    <div>
-                                        <strong>GitHub Issues</strong>
-                                        <a href="https://github.com/Starlight0307/Team-Build-It" target="_blank">github.com/Starlight0307/Team-Build-It</a>
+                                    <div class="col-md-6">
+                                        <label for="c-email" class="form-label">이메일</label>
+                                        <input type="email" id="c-email" class="form-control" placeholder="example@email.com">
                                     </div>
-                                </div>
-                                <div class="contact-info-row">
-                                    <span class="contact-icon">🌐</span>
-                                    <div>
-                                        <strong>웹사이트</strong>
-                                        <span>www.teambuildit.co.kr</span>
+                                    <div class="col-12">
+                                        <label for="c-type" class="form-label">문의 유형</label>
+                                        <select id="c-type" class="form-select">
+                                            <option value="">선택해주세요</option>
+                                            <option>설치 · 환경 문제</option>
+                                            <option>버그 리포트</option>
+                                            <option>기능 요청</option>
+                                            <option>기업 도입 문의</option>
+                                            <option>기타</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="c-subject" class="form-label">제목</label>
+                                        <input type="text" id="c-subject" class="form-control"
+                                               placeholder="문의 제목을 입력해주세요">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="c-message" class="form-label">내용</label>
+                                        <textarea id="c-message" class="form-control" rows="6"
+                                                  placeholder="문의 내용을 자세히 입력해주세요..."></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-primary w-100"
+                                                onclick="alert('문의가 접수되었습니다.')">
+                                            문의 보내기
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="contact-notice">
-                                <strong>📌 답변 안내</strong>
-                                <p>평일 기준 1~3 영업일 내로 등록하신 이메일로 답변드립니다.</p>
-                            </div>
-                        </div>
-                    </div>
-                    </div><!-- /.contact-form-box -->
 
+                            <!-- 연락처 정보 -->
+                            <div class="col-12 col-lg-4 contact-aside" data-animate data-delay="2">
+                                <h3>연락처 정보</h3>
+                                <div class="contact-info-list">
+                                    <div class="contact-info-row">
+                                        <span class="contact-icon">📧</span>
+                                        <div>
+                                            <strong>이메일</strong>
+                                            <span>teambuildit@lumi.dev</span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-row">
+                                        <span class="contact-icon">🐙</span>
+                                        <div>
+                                            <strong>GitHub Issues</strong>
+                                            <a href="https://github.com/Starlight0307/Team-Build-It" target="_blank">
+                                                github.com/Starlight0307/Team-Build-It
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-row">
+                                        <span class="contact-icon">🌐</span>
+                                        <div>
+                                            <strong>웹사이트</strong>
+                                            <span>www.teambuildit.co.kr</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contact-notice">
+                                    <strong>📌 답변 안내</strong>
+                                    <p>평일 기준 1~3 영업일 내로 등록하신 이메일로 답변드립니다.</p>
+                                </div>
+                            </div>
+
+                        </div><!-- /row -->
+                    </div><!-- /contact-form-box -->
                 </div>
             </section>
 
@@ -292,18 +372,7 @@
             <div class="footer-brand">
                 <div class="footer-logo">LUMI</div>
                 <p class="footer-logo-sub">Local Unified Machine Intelligence</p>
-                <p class="footer-desc">완전 독립형 로컬 AI 어시스턴트입니다. 모든 AI 연산이 당신의 PC에서만 이루어지며, 어떤 데이터도 외부로 전송되지 않습니다.</p>
-                <div class="footer-socials">
-                    <a href="#" class="footer-social-btn" aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="#" class="footer-social-btn" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="#" class="footer-social-btn" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
-                                </div>
+                <p class="footer-desc">완전 독립형 로컬 AI 어시스턴트입니다.</p>
                 <p class="footer-version">v1.0.0 &middot; MIT License &middot; &copy; 2026 Team Build It</p>
             </div>
             <div class="footer-col-group">
@@ -313,7 +382,6 @@
                     <li><a href="about.html">LUMI 소개</a></li>
                     <li><a href="team.html">팀 소개</a></li>
                     <li><a href="installer.html">다운로드</a></li>
-                    <li><a href="git.html">GitHub</a></li>
                 </ul>
             </div>
             <div class="footer-col-group">
@@ -322,16 +390,6 @@
                     <li><a href="support.html">후기 · Q/A · 문의</a></li>
                     <li><a href="auth.html">로그인 / 회원가입</a></li>
                     <li><span>teambuildit@lumi.dev</span></li>
-                    <li><span>www.teambuildit.co.kr</span></li>
-                </ul>
-            </div>
-            <div class="footer-col-group">
-                <h4>다운로드</h4>
-                <ul>
-                    <li><a href="installer.html">Windows 설치 파일</a></li>
-                    <li><a href="installer.html">macOS 설치 파일</a></li>
-                    <li><a href="installer.html">Linux 설치 파일</a></li>
-                    <li><a href="git.html">GitHub 소스코드</a></li>
                 </ul>
             </div>
         </div>
@@ -340,9 +398,10 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="navbar.js"></script>
     <script>
-    /* Q/A 카테고리 필터 */
+    /* Q&A 카테고리 필터 — Bootstrap accordion과 함께 동작 */
     (function () {
         const cats  = document.querySelectorAll('.qa-cat');
         const items = document.querySelectorAll('.qa-full-item');
@@ -375,50 +434,19 @@
         });
     })();
 
-    /* 해시 앵커 스크롤 — 고정 네비바 오프셋 보정 */
+    /* 해시 앵커 스크롤 */
     (function () {
         function scrollToHash() {
             const hash = window.location.hash;
             if (!hash) return;
             const target = document.querySelector(hash);
             if (!target) return;
-            const navbar = document.getElementById('top-navbar');
-            const offset = (navbar ? navbar.offsetHeight : 70) + 20;
+            const offset = 90;
             const top = target.getBoundingClientRect().top + window.scrollY - offset;
             window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         }
         setTimeout(scrollToHash, 80);
         window.addEventListener('hashchange', scrollToHash);
-    })();
-
-    /* 섹션 진입 감지 → 네비바 active 실시간 반영 */
-    (function () {
-        const map = {
-            'tab-reviews': 'nav-reviews',
-            'tab-qa':      'nav-qa',
-            'tab-contact': 'nav-contact'
-        };
-
-        function activate(navId) {
-            Object.values(map).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.toggle('active', id === navId);
-            });
-        }
-
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) activate(map[entry.target.id]);
-            });
-        }, { rootMargin: '-80px 0px -45% 0px', threshold: 0 });
-
-        /* 네비바 주입 완료 후 관찰 시작 */
-        setTimeout(() => {
-            Object.keys(map).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) io.observe(el);
-            });
-        }, 120);
     })();
 
     /* 스크롤 애니메이션 */
@@ -436,4 +464,3 @@
     </script>
 </body>
 </html>
-
