@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 1. 상단바 HTML — 메가 메뉴 포함 전체 구조
-    // ─────────────────────────────────────────────────────────────────────
     const navbarHTML = `
     <header class="top-navbar" id="top-navbar">
         <div class="nav-container">
 
             <a class="nav-logo" href="index.html">LUMI</a>
 
-            <!-- 데스크톱 중앙 메뉴 (트리거 버튼) -->
             <nav class="nav-menu" id="nav-menu">
                 <div class="mob-nav-group">
                     <button class="nav-item nav-mega-trigger" id="nav-lumi-btn">LUMI 소개 <span class="mob-arrow">▾</span></button>
@@ -56,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </nav>
 
-            <!-- ── 메가 메뉴 패널 (navbar 전체 너비) ── -->
+            <!-- 메가 메뉴 패널 (navbar 전체 너비) -->
             <div class="nav-mega-panel" id="nav-mega-panel">
                 <div class="mega-inner">
 
@@ -128,12 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
 
-            <!-- 우측 로그인 버튼 (데스크톱) -->
             <div class="nav-right">
                 <a href="auth.html" class="btn-login">로그인</a>
             </div>
 
-            <!-- 모바일: 로그인 + 햄버거 묶음 -->
             <div class="nav-mobile-actions">
                 <a href="auth.html" class="btn-login-mobile">로그인</a>
                 <div class="menu-toggle" id="mobile-menu-btn">☰</div>
@@ -143,9 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </header>
     `;
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 2. HTML 주입
-    // ─────────────────────────────────────────────────────────────────────
     const navbarContainer = document.getElementById('navbar-container');
     if (!navbarContainer) return;
     navbarContainer.innerHTML = navbarHTML;
@@ -156,20 +147,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const megaPanel     = document.getElementById('nav-mega-panel');
     const megaTriggers  = document.querySelectorAll('.nav-mega-trigger');
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 3. 현재 페이지 active 처리
-    // ─────────────────────────────────────────────────────────────────────
-    const page = window.location.pathname.split('/').pop();
-
-    // 페이지 → [mega-item ID, 트리거 버튼 ID] 매핑
+    /* ── 현재 페이지 active 처리 ── */
+    const page = window.location.pathname.split("/").pop();
     const pageMap = {
-        'about.html':     ['nav-about',     'nav-lumi-btn'],
-        'team.html':      ['nav-team',       'nav-lumi-btn'],
-        'installer.html': ['nav-installer',  'nav-dl-btn'],
-        'git.html':       ['nav-git',        'nav-dl-btn'],
+        'about.html':     ['nav-about',    'nav-lumi-btn'],
+        'team.html':      ['nav-team',     'nav-lumi-btn'],
+        'installer.html': ['nav-installer','nav-dl-btn'],
+        'git.html':       ['nav-git',      'nav-dl-btn'],
     };
 
-    // support.html — 해시별 매핑
     const supportHashMap = {
         '#tab-reviews': 'nav-reviews',
         '#tab-qa':      'nav-qa',
@@ -186,53 +172,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (page === 'support.html') {
-        // 초기 로드: 해시 기반으로 active 설정
+        /* 초기 로드 시 해시 기반 active */
         const hashItem = supportHashMap[window.location.hash] || 'nav-reviews';
         setActiveIds([hashItem, 'nav-support-btn']);
-
-        // ── 핵심 수정 ①: IntersectionObserver로 섹션 진입 시 실시간 active 갱신 ──
-        // rootMargin "-80px 0px -45% 0px" 의미:
-        //   상단 80px (navbar 높이) 제외 + 뷰포트 하단 45% 영역도 제외
-        //   → 섹션이 뷰포트 중상단쯤 왔을 때 active 전환
-        const sectionMap = {
-            'tab-reviews': 'nav-reviews',
-            'tab-qa':      'nav-qa',
-            'tab-contact': 'nav-contact',
-        };
-
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const navId = sectionMap[entry.target.id];
-                    if (navId) setActiveIds([navId, 'nav-support-btn']);
-                }
-            });
-        }, { rootMargin: '-80px 0px -45% 0px', threshold: 0 });
-
-        // navbar 주입 완료 후 섹션 감시 시작 (약간의 딜레이로 DOM 보장)
-        setTimeout(() => {
-            Object.keys(sectionMap).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) io.observe(el);
-            });
-        }, 120);
-
-        // hashchange 이벤트도 감지 (링크 직접 클릭 시)
-        window.addEventListener('hashchange', () => {
-            const hashItem = supportHashMap[window.location.hash];
-            if (hashItem) setActiveIds([hashItem, 'nav-support-btn']);
-        });
-
     } else {
         setActiveIds(pageMap[page] || []);
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 4. 메가 메뉴 hover 열고 닫기
-    // ─────────────────────────────────────────────────────────────────────
-    // ── 핵심 수정 ②: 메가 패널이 navbar와 분리된 독립 DOM이므로
-    //    navbar 전체(top-navbar)에도 mouseenter/leave를 걸어
-    //    "navbar → 패널로 마우스 이동" 시 닫히지 않도록 처리 ──
+    /* ── 메가 메뉴: 호버로 열고 닫기 ── */
     let closeTimer;
 
     function openMega() {
@@ -240,63 +187,52 @@ document.addEventListener("DOMContentLoaded", function () {
         megaPanel.classList.add('open');
         megaTriggers.forEach(t => t.classList.add('mega-open'));
     }
-
     function closeMega() {
-        // 150ms 딜레이: 마우스가 트리거 → 패널로 이동하는 찰나 닫히지 않도록
         closeTimer = setTimeout(() => {
             megaPanel.classList.remove('open');
             megaTriggers.forEach(t => t.classList.remove('mega-open'));
         }, 150);
     }
 
-    // 트리거 버튼 hover
     megaTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', openMega);
         trigger.addEventListener('mouseleave', closeMega);
     });
-
-    // 패널 자체에 마우스가 있을 때 닫히지 않도록
     megaPanel.addEventListener('mouseenter', openMega);
     megaPanel.addEventListener('mouseleave', closeMega);
 
-    // 모바일: 트리거 클릭 시 아코디언 토글
+    /* 모바일: 아코디언 토글 */
     megaTriggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
             if (window.innerWidth > 768) return;
             const group = trigger.closest('.mob-nav-group');
             if (!group) return;
             const isOpen = group.classList.contains('open');
-            // 다른 열린 그룹 닫기
             document.querySelectorAll('.mob-nav-group.open').forEach(g => g.classList.remove('open'));
             if (!isOpen) group.classList.add('open');
         });
     });
 
-    // 패널 외부 클릭 시 닫기
-    document.addEventListener('click', e => {
-        if (!e.target.closest('.nav-mega-trigger') && !e.target.closest('#nav-mega-panel')) {
+    /* 외부 클릭 시 닫기 */
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-mega-trigger') && !e.target.closest('.nav-mega-panel')) {
             megaPanel.classList.remove('open');
             megaTriggers.forEach(t => t.classList.remove('mega-open'));
         }
     });
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 5. 모바일 햄버거 토글
-    // ─────────────────────────────────────────────────────────────────────
+    /* ── 모바일 햄버거 토글 ── */
     if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-            // 메뉴 닫힐 때 열린 아코디언도 모두 닫기
             if (!navMenu.classList.contains('active')) {
                 document.querySelectorAll('.mob-nav-group.open').forEach(g => g.classList.remove('open'));
             }
         });
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // STEP 6. 스크롤 감지 — 홈(index)만 투명→흰색, 나머지 항상 scrolled
-    // ─────────────────────────────────────────────────────────────────────
+    /* ── 스크롤 감지 ── */
     if (!navbar) return;
     const isIndex = (page === '' || page === 'index.html');
 

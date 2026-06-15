@@ -1,127 +1,51 @@
 /* =====================================================================
- * responsive.css — 모바일 반응형 (768px 이하)
- * =====================================================================
- *
- * 태블릿/모바일 환경에서 레이아웃을 재정의합니다.
- * 다른 CSS 파일의 데스크톱 스타일을 덮어쓰는 방식으로 동작하므로
- * 반드시 모든 CSS 파일 중 마지막에 로드해야 합니다.
- *
- * 변경 항목:
- *   - 네비게이션: grid → flex, 로그인+햄버거 묶음 표시
- *   - 타이포그래피: 폰트 크기 축소
- *   - 히어로 버튼: 가로 → 세로 배치
- *   - Git 저장소 정보: 가로 → 세로 배치
- *   - 인증 카드: 패딩 축소
- *
- * 의존: 모든 CSS 파일 (variables, navbar, layout, home, components, git, footer, auth)
+ * responsive.css — 반응형 (반드시 마지막에 로드)
  * ===================================================================== */
 
-@media (max-width: 768px) {
+/* ── 팀 캐러셀 데스크톱 기본값 ── */
+.team-carousel-row   { width: 100%; }
+.team-carousel-viewport { width: 100%; }
+.team-carousel-btn   { display: none; }
+.team-carousel-dots  { display: none; }
 
-    /* ==================================================================
-     * 네비게이션 바
-     * ================================================================== */
-
-    /* ── 데스크톱 전용 우측 로그인 영역 숨김 ── */
-    .nav-right {
-        display: none;
-        /* grid 3번 열에 있던 로그인 버튼 숨김
-           모바일에서는 .nav-mobile-actions 안의 .btn-login-mobile로 대체 */
+/* ── 태블릿 이하 (1024px) ── */
+@media (max-width: 1024px) {
+    .core-features {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* ── nav-container: grid 3열 → flex 전환 ── */
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-        /* 로고(좌측) + nav-mobile-actions(우측) 양 끝 배치 */
-        align-items: center;
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* ── 모바일 액션 묶음 표시 ──
-       로그인 버튼과 햄버거 아이콘이 나란히 우측에 배치됨 */
-    .nav-mobile-actions {
-        display: flex;          /* 데스크톱에서 none → 모바일에서 flex 표시 */
-        /* gap은 navbar.css의 .nav-mobile-actions에서 0.6rem으로 지정됨 */
-    }
-
-    /* ── 드롭다운 메뉴 ── */
-    .nav-menu {
-        display: none;          /* 기본 숨김 — navbar.js에서 .active 토글로 열고 닫음 */
-        position: absolute;     /* 콘텐츠를 밀지 않고 위에 레이어로 표시 */
-        top: 70px;              /* navbar 바로 아래 */
-        left: 0;
-        width: 100%;
-        background-color: rgba(9, 13, 22, 0.98); /* 거의 불투명 배경 */
-        flex-direction: column; /* 메뉴 아이템 세로 나열 */
-        align-items: center;
-        padding: 1.5rem 0;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    /* ── 햄버거 클릭 시 메뉴 열림 ── */
-    .nav-menu.active {
-        display: flex;
-    }
-
-    /* ── 세로 드롭다운에서 밑줄 비활성화 ── */
-    .nav-item::after {
-        display: none;          /* 모바일 메뉴에서는 하단 밑줄 불필요 */
-    }
-
-    /* ==================================================================
-     * 타이포그래피
-     * ================================================================== */
-
-    /* ── 히어로 타이틀 축소 ── */
-    .hero-banner h2 {
-        font-size: 2.3rem;      /* 3.5rem → 2.3rem — 좁은 화면에서 텍스트 잘림 방지 */
-    }
-
-    /* ── 페이지 헤더 타이틀 축소 ── */
-    .page-header h1 {
-        font-size: 2.2rem;      /* 2.8rem → 2.2rem */
-    }
-
-    /* ==================================================================
-     * 레이아웃
-     * ================================================================== */
-
-    /* ── CTA 버튼 가로 → 세로 배치 ── */
-    .hero-actions {
-        flex-direction: column; /* 버튼들을 세로로 쌓아 각각 전체 너비 확보 */
-    }
-
-    /* ── Git 저장소 정보 가로 → 세로 배치 ── */
-    .git-repo-info {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    /* ==================================================================
-     * 인증 페이지
-     * ================================================================== */
-
-    /* ── 인증 카드 패딩 축소 ── */
-    .auth-card {
-        padding: 2rem 1.5rem;   /* 2.8rem 2.5rem → 2rem 1.5rem — 화면 폭 활용 */
+    .team-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
     }
 }
 
-/* =====================================================================
- * 모바일 메가 메뉴 아코디언 스타일 (768px 이하)
- * ===================================================================== */
+/* ── 중간 화면 (900px) ── */
+@media (max-width: 900px) {
+    .footer-col-group { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* ── 모바일 (768px 이하) ── */
 @media (max-width: 768px) {
 
-    /* nav-container: grid → flex */
+    /* 네비게이션 */
+    .nav-right { display: none; }
+
     .nav-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-
-    .nav-right { display: none; }
 
     .nav-mobile-actions {
         display: flex;
@@ -135,31 +59,39 @@
         justify-content: center;
     }
 
-    /* 모바일 드롭다운 메뉴 */
+    /* ── 모바일 내비 메뉴 ── */
     .nav-menu {
         display: none;
         position: fixed;
-        top: 70px; left: 0;
+        top: 70px;
+        left: 0;
         width: 100%;
         flex-direction: column;
         align-items: stretch;
         padding: 0;
         gap: 0;
         z-index: 999;
-        background-color: rgba(255,255,255,0.96);
+        /* 스크롤 상태 기본 (흰색) */
+        background-color: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         border-bottom: 1px solid var(--border-color);
         box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        transition: background-color 0.35s ease, border-color 0.35s ease;
+        /* navbar와 동일한 전환 속도 */
+        transition: background-color 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
     }
-
     .nav-menu.active { display: flex; }
 
-    /* 투명 navbar 상태 */
+    /* 스크롤 올릴 때: backdrop-filter 즉시 제거 */
+    .top-navbar.unscrolling .nav-menu {
+        transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* 투명 navbar 상태 → 동일하게 투명 계열 */
     .top-navbar:not(.scrolled) .nav-menu {
-        background-color: rgba(240,244,255,0.12);
+        background-color: rgba(240, 244, 255, 0.12);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-bottom-color: rgba(255,255,255,0.15);
         box-shadow: none;
     }
@@ -169,10 +101,12 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: border-color 0.35s ease;
     }
-
-    .top-navbar.scrolled .mob-nav-group { border-bottom-color: var(--border-color); }
+    .top-navbar.scrolled .mob-nav-group {
+        border-bottom-color: var(--border-color);
+    }
     .mob-nav-group:last-child { border-bottom: none; }
 
     .mob-nav-group .nav-item {
@@ -186,17 +120,14 @@
         font-size: 1rem;
         transition: color 0.35s ease;
     }
-
     .top-navbar.scrolled .mob-nav-group .nav-item { color: #111827; }
 
-    /* 화살표 */
     .mob-arrow {
         display: inline-block;
         font-size: 0.78rem;
         transition: transform 0.22s;
         opacity: 0.7;
     }
-
     .mob-nav-group.open .mob-arrow { transform: rotate(180deg); }
 
     /* 서브 메뉴 */
@@ -205,13 +136,12 @@
         flex-direction: column;
         background: rgba(240,244,255,0.08);
         border-top: 1px solid rgba(255,255,255,0.1);
+        transition: border-color 0.35s ease;
     }
-
     .top-navbar.scrolled .mob-sub {
         background: rgba(0,0,0,0.03);
         border-top-color: var(--border-color);
     }
-
     .mob-nav-group.open .mob-sub { display: flex; }
 
     .mob-sub-link {
@@ -222,9 +152,8 @@
         text-decoration: none;
         color: rgba(255,255,255,0.92);
         border-bottom: 1px solid rgba(255,255,255,0.05);
-        transition: background 0.15s, color 0.35s ease;
+        transition: background 0.15s, border-color 0.35s ease, color 0.35s ease;
     }
-
     .mob-sub-link:last-child { border-bottom: none; }
     .mob-sub-link:hover { background: rgba(255,255,255,0.08); }
 
@@ -232,7 +161,6 @@
         color: var(--text-main);
         border-bottom-color: var(--border-color);
     }
-
     .top-navbar.scrolled .mob-sub-link:hover { background: var(--bg-main); }
 
     .mob-sub-icon { font-size: 1.05rem; flex-shrink: 0; }
@@ -242,18 +170,221 @@
         flex-direction: column;
         gap: 0.1rem;
     }
-
     .mob-sub-text strong { font-size: 0.88rem; font-weight: 600; }
-
     .mob-sub-text em {
         font-style: normal;
         font-size: 0.73rem;
         color: rgba(255,255,255,0.65);
         transition: color 0.35s ease;
     }
-
     .top-navbar.scrolled .mob-sub-text em { color: var(--text-muted); }
 
-    /* active 밑줄 모바일에서 제거 */
     .nav-item::after { display: none; }
+
+    /* 섹션 공통 */
+    .section-inner { padding: 0 1.2rem; }
+    .features-section,
+    .team-section,
+    .reviews-section,
+    .contact-section { padding: 3.5rem 0; }
+
+    /* 캐러셀 */
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+    .carousel-prev { left: 0.75rem; }
+    .carousel-next { right: 0.75rem; }
+
+    /* 기능 카드 */
+    .core-features {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    /* 팀 카드 캐러셀 */
+    .team-carousel-row {
+        position: relative;
+    }
+
+    .team-carousel-viewport {
+        display: block;
+        overflow: hidden;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .team-cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        grid-template-columns: none;
+        width: 300%;
+        gap: 0;
+        max-width: none;
+        margin: 0;
+        will-change: transform;
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-card {
+        width: 33.333%;
+        flex-shrink: 0;
+    }
+
+    .team-carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: none;
+        color: var(--text-main);
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 0;
+        z-index: 2;
+        transition: opacity 0.2s;
+    }
+    .team-carousel-prev { left: -1rem; }
+    .team-carousel-next { right: -1rem; }
+    .team-carousel-btn:disabled { visibility: hidden; }
+    .team-carousel-btn:not(:disabled):active { opacity: 0.5; }
+
+    .team-carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1.2rem 0 0.2rem;
+    }
+
+    .team-dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background: var(--border-color);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.25s, width 0.25s, border-radius 0.25s;
+        flex-shrink: 0;
+    }
+    .team-dot.active {
+        background: var(--color-primary);
+        width: 20px;
+        border-radius: 4px;
+    }
+
+    .team-avatar-wrap {
+        aspect-ratio: 4 / 3;
+    }
+
+    /* 후기 */
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Q/A */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* 푸터 */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-inner:has(.footer-brand) {
+        flex-direction: column;
+    }
+
+    /* 기타 페이지 */
+    .page-header h1 { font-size: clamp(1.5rem, 4.5vw, 2.4rem); }
+    .page-section   { padding: 3rem 1.2rem; }
+}
+
+/* ── 소형 모바일 (480px 이하) ── */
+@media (max-width: 480px) {
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-banner {
+        padding: 70px 1.2rem 0;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-actions .btn,
+    .hero-actions .btn-ghost {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .team-cards {
+        max-width: 100%;
+    }
+
+    /* 인증 페이지 */
+    .auth-wrapper {
+        padding: 0.8rem;
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .auth-card {
+        max-width: 100%;
+        padding: 1.8rem 1.4rem;
+        border-radius: 16px;
+    }
+
+    .auth-logo           { margin-bottom: 1.4rem; }
+    .auth-logo-text      { font-size: 1.75rem; }
+    .auth-tab            { font-size: 0.9rem; padding: 0.55rem; }
+    .auth-panel-title    { font-size: 1.2rem; }
+    .auth-panel-desc     { font-size: 0.85rem; margin-bottom: 1.3rem; }
+    .auth-field          { margin-bottom: 1rem; }
+    .auth-field label    { font-size: 0.83rem; }
+    .auth-input          { padding: 0.68rem 0.95rem; font-size: 0.94rem; }
+    .auth-btn            { padding: 0.78rem; font-size: 0.96rem; }
+    .auth-social-btn     { padding: 0.68rem; font-size: 0.88rem; }
+    .auth-footer-links   { gap: 0.8rem; margin-top: 1.2rem; padding-top: 1.2rem; }
+    .auth-divider        { margin: 0.9rem 0; font-size: 0.8rem; }
+    .terms-box           { height: 130px; font-size: 0.81rem; }
+    .auth-info-box       { font-size: 0.83rem; padding: 0.85rem 1rem; }
+    .auth-back-btn       { font-size: 0.83rem; margin-bottom: 1.2rem; }
+}
+
+/* ── 초소형 (400px 이하) ── */
+@media (max-width: 400px) {
+    .auth-wrapper { padding: 0; }
+    .auth-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        min-height: 100vh;
+        padding: 1.8rem 1.1rem;
+        box-shadow: none;
+        max-width: 100%;
+    }
+    .auth-logo-text { font-size: 1.6rem; }
+    .auth-input     { padding: 0.62rem 0.85rem; font-size: 0.92rem; }
 }
