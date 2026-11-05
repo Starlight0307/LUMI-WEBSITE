@@ -39,7 +39,7 @@
                     <div class="os-version">macOS 14 Sonoma 이상</div>
                     <a class="btn btn-primary" href="https://github.com/Starlight0307/Team-Build-It/releases/latest/download/LumiSetup-mac-arm64.dmg">Apple Silicon (M 시리즈)</a>
                     <a class="btn btn-primary download-alt" href="https://github.com/Starlight0307/Team-Build-It/releases/latest/download/LumiSetup-mac-intel.dmg">Intel Mac</a>
-                    <p class="download-note">처음 열 때 macOS가 막으면: 시스템 설정 → 개인정보 보호 및 보안 → 맨 아래 <strong>그래도 열기</strong></p>
+                    <p class="download-note">처음 열 때 macOS가 막으면 <a href="#mac-guide">여는 방법 보기</a></p>
                 </div>
                 <div class="download-card">
                     <div class="os-icon">🐧</div>
@@ -47,6 +47,19 @@
                     <div class="os-version">Ubuntu 20.04 LTS 이상</div>
                     <button class="btn btn-primary" disabled>준비 중</button>
                 </div>
+            </div>
+
+            <!-- ── macOS 첫 실행 안내 ── -->
+            <div class="spec-table-container install-guide" id="mac-guide">
+                <h3>macOS에서 처음 열 때</h3>
+                <p>LUMI 설치 프로그램은 아직 Apple의 공증을 받지 않아, 처음 열면 <strong>'LumiSetup.app'을(를) 열지 않음</strong> 창이 나타납니다. 이 페이지에서 받은 파일이 맞다면 아래 순서로 열 수 있습니다. 한 번만 허용하면 됩니다.</p>
+                <ol>
+                    <li>내려받은 <strong>.dmg</strong> 파일을 열고 <strong>LumiSetup</strong>을 더블클릭합니다. 경고 창이 나타나면 <strong>완료</strong>를 누릅니다.</li>
+                    <li><strong>시스템 설정 → 개인정보 보호 및 보안</strong>을 열고 맨 아래 <strong>보안</strong> 항목까지 내립니다.</li>
+                    <li>'LumiSetup.app' 안내 옆의 <strong>그래도 열기</strong>를 누릅니다.</li>
+                    <li>확인 창에서 다시 <strong>그래도 열기</strong>를 누르고 Mac 암호나 Touch ID로 승인하면 설치 화면이 열립니다.</li>
+                </ol>
+                <p class="install-guide-tip"><strong>그래도 열기</strong>가 보이지 않으면 LumiSetup을 한 번 더 열어 경고 창을 띄운 뒤 다시 확인해 주세요.</p>
             </div>
 
             <!-- ── 시스템 요구 사양 테이블 ── -->

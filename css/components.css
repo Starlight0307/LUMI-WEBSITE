@@ -100,6 +100,27 @@
     color: var(--text-muted);
 }
 
+/* ── macOS 첫 실행 안내 (installer.html) ── */
+.install-guide {
+    margin-bottom: 2rem;
+    scroll-margin-top: 90px;
+}
+
+.install-guide ol {
+    margin: 1.25rem 0;
+    padding-left: 1.5rem;
+    list-style: decimal;
+}
+
+.install-guide li {
+    margin-bottom: 0.75rem;
+}
+
+.install-guide-tip {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
 /* ── 시스템 사양 테이블 (installer.html) ── */
 .spec-table-container {
     background-color: var(--bg-card);
