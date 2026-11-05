@@ -125,11 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
 
             <div class="nav-right">
-                <a href="auth.html" class="btn-login">로그인</a>
             </div>
 
             <div class="nav-mobile-actions">
-                <a href="auth.html" class="btn-login-mobile">로그인</a>
                 <div class="menu-toggle" id="mobile-menu-btn">☰</div>
             </div>
 
