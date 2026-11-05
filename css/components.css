@@ -85,6 +85,21 @@
     width: 100%;
 }
 
+.download-card .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.download-card .download-alt {
+    margin-top: 0.75rem;
+}
+
+.download-note {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
 /* ── 시스템 사양 테이블 (installer.html) ── */
 .spec-table-container {
     background-color: var(--bg-card);
